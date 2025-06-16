@@ -7,6 +7,9 @@ import { useAppContext } from '../App';
 import ProgressBar from './common/ProgressBar';
 import Button from './common/Button';
 
+const EXPAND_ANIMATION_DURATION = 300;
+const EXPAND_TRANSITION = `all ${EXPAND_ANIMATION_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+
 // SortableItem component for individual words
 function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
   const {
@@ -21,39 +24,41 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    height: '72px',
-    marginBottom: '12px',
+    height: isExpanded ? 'auto' : '72px',
     userSelect: 'none',
-    cursor: isDragging ? 'grabbing' : 'grab',
-    opacity: isDragging ? 0.95 : 1,
-    zIndex: isDragging ? 1000 : 1,
     position: 'relative',
     touchAction: 'none',
     willChange: 'transform',
-    backfaceVisibility: 'hidden',
-    WebkitBackfaceVisibility: 'hidden',
-    perspective: 1000,
-    WebkitPerspective: 1000
+    display: 'flex',
+    flexDirection: 'column',
+    opacity: isDragging ? 0.95 : 1,
+    zIndex: isDragging ? 1000 : 1,
+  };
+
+  const cardStyle = {
+    borderRadius: '24px',
+    border: `1px solid ${isDragging ? theme.fill : '#D3D3D3'}`,
+    backgroundColor: '#FFFFFF',
+    boxShadow: isDragging 
+      ? `0 16px 40px rgba(0,0,0,0.25), 0 0 0 2px ${theme.fill}20`
+      : '0 2px 4px rgba(0,0,0,0.04)',
+    transition: isDragging ? 'none' : 'all 150ms ease-out',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden'
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <div style={{
-        borderRadius: '24px',
-        border: `1px solid ${isDragging ? theme.fill : '#D3D3D3'}`,
-        backgroundColor: '#FFFFFF',
-        boxShadow: isDragging 
-          ? `0 16px 40px rgba(0,0,0,0.25), 0 0 0 2px ${theme.fill}20`
-          : '0 2px 4px rgba(0,0,0,0.04)',
-        transition: isDragging ? 'none' : 'all 150ms ease-out'
-      }}>
-        {/* Main row with word and info icon */}
-        <div style={{
+    <div ref={setNodeRef} style={style} {...attributes}>
+      <div style={cardStyle}>
+        <div {...listeners} style={{
+          padding: isExpanded ? '16px 16px 8px 16px' : '14px 16px',
+          cursor: isDragging ? 'grabbing' : 'grab',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: isExpanded ? '16px' : '14px 16px',
-          width: '100%'
+          backgroundColor: '#FFFFFF',
         }}>
           {/* Left side: Drag handle + Word */}
           <div style={{
@@ -83,15 +88,27 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
 
             {/* Word with letter prefix */}
             <div style={{
-              fontFamily: 'IBM Plex Sans, sans-serif',
-              fontSize: '16px',
-              fontWeight: '500',
-              color: isDragging ? theme.text : '#000000',
               display: 'flex',
               alignItems: 'center',
+              gap: '12px',
               flex: 1
             }}>
-              {word.letter.toLowerCase()}.&nbsp;&nbsp;{word.text}
+              <span style={{
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontSize: '15px',
+                fontWeight: '400',
+                color: '#666666'
+              }}>
+                {word.letter.toLowerCase()}.
+              </span>
+              <span style={{
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontSize: '16px',
+                fontWeight: '600',
+                color: isDragging ? theme.text : '#000000'
+              }}>
+                {word.text}
+              </span>
             </div>
           </div>
 
@@ -118,7 +135,7 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
           >
             <div style={{
               transition: 'transform 200ms ease',
-              transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'
+              transform: isExpanded ? 'rotate(0deg)' : 'rotate(180deg)'
             }}>
               {isExpanded ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -133,29 +150,26 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
             </div>
           </button>
         </div>
-
-        {/* Expandable Definition */}
-        {isExpanded && (
+        
+        {/* Expandable content with smooth transition */}
+        <div style={{
+          maxHeight: isExpanded ? '200px' : '0',
+          overflow: 'hidden',
+          transition: EXPAND_TRANSITION,
+          padding: isExpanded ? '0 16px 20px 52px' : '0 16px',
+          opacity: isExpanded ? 1 : 0,
+          backgroundColor: '#FFFFFF',
+          marginTop: isExpanded ? '-8px' : '0'
+        }}>
           <div style={{
-            maxHeight: '200px',
-            overflow: 'hidden',
-            transition: 'max-height 300ms ease-in-out, padding 300ms ease-in-out',
-            padding: '0 16px 16px 16px',
-            borderTop: '1px solid #E8E8E8'
+            fontFamily: 'IBM Plex Sans, sans-serif',
+            fontSize: '16px',
+            lineHeight: '1.5',
+            color: '#212121',
           }}>
-            <div style={{
-              fontFamily: 'IBM Plex Sans, sans-serif',
-              fontSize: '16px',
-              fontWeight: '400',
-              color: '#212121',
-              lineHeight: '1.4',
-              maxWidth: '100%',
-              paddingTop: '12px'
-            }}>
-              {word.definition}
-            </div>
+            {word.definition}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -218,35 +232,73 @@ const RankingScreen = () => {
 
   // Save rankings whenever word order changes
   useEffect(() => {
+    // Skip effect if not ready or invalid state
     if (!isInitialized || words.length !== 4) return;
 
-    const rankings = {};
+    // Memoize rankings calculation
+    const newRankings = {};
     words.forEach((word, index) => {
-      rankings[word.letter] = index + 1;
+      newRankings[word.letter] = index + 1;
     });
 
+    // Get existing rankings from state
     const existingRankings = state.userRankings[currentQuestionNum];
+
+    // Debug logging
+    console.log(`Question ${currentQuestionNum} - Current Word Order:`, words.map(w => ({
+      letter: w.letter,
+      text: w.text,
+      column: w.column,
+      rank: newRankings[w.letter]
+    })));
+
+    // Deep compare rankings to prevent unnecessary updates
     const hasChanged = !existingRankings || 
-      Object.keys(rankings).some(letter => rankings[letter] !== existingRankings[letter]);
+      Object.keys(newRankings).some(letter => 
+        newRankings[letter] !== existingRankings[letter]
+      );
 
+    // Only dispatch if rankings actually changed
     if (hasChanged) {
-      setSaveStatus('saving');
-      
-      dispatch({
-        type: 'UPDATE_RANKINGS',
-        questionNumber: currentQuestionNum,
-        rankings
-      });
+      // Debounce save status updates
+      const saveStatusTimeout = setTimeout(() => {
+        setSaveStatus('saving');
+        
+        // Debug logging before dispatch
+        console.log(`Saving rankings for question ${currentQuestionNum}:`, {
+          newRankings,
+          existingRankings,
+          words: words.map(w => `${w.letter}(${w.column}): ${newRankings[w.letter]}`)
+        });
 
-      const saveTimer = setTimeout(() => {
-        setSaveStatus('saved');
-        const hideTimer = setTimeout(() => setSaveStatus('idle'), 2000);
-        return () => clearTimeout(hideTimer);
-      }, 300);
-      
-      return () => clearTimeout(saveTimer);
+        // Dispatch ranking update
+        dispatch({
+          type: 'UPDATE_RANKINGS',
+          questionNumber: currentQuestionNum,
+          rankings: newRankings
+        });
+
+        // Show saved status briefly
+        const savedTimeout = setTimeout(() => {
+          setSaveStatus('saved');
+          const hideTimeout = setTimeout(() => {
+            setSaveStatus('idle');
+          }, 2000);
+          return () => clearTimeout(hideTimeout);
+        }, 300);
+
+        return () => clearTimeout(savedTimeout);
+      }, 100);
+
+      return () => clearTimeout(saveStatusTimeout);
     }
-  }, [words, isInitialized, currentQuestionNum, dispatch, state.userRankings]);
+  }, [
+    words,               // Only when word order changes
+    isInitialized,       // Only when initialization state changes
+    currentQuestionNum,  // Only when question number changes
+    dispatch,            // Stable dispatch function
+    state.userRankings   // Only when rankings in global state change
+  ]);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
@@ -259,6 +311,15 @@ const RankingScreen = () => {
         const newItems = [...items];
         const [movedItem] = newItems.splice(oldIndex, 1);
         newItems.splice(newIndex, 0, movedItem);
+
+        // Debug logging for drag end
+        console.log('Drag completed:', {
+          questionNum: currentQuestionNum,
+          movedItem: `${movedItem.letter}(${movedItem.column})`,
+          fromIndex: oldIndex,
+          toIndex: newIndex,
+          newOrder: newItems.map(w => `${w.letter}(${w.column})`)
+        });
         
         return newItems;
       });
@@ -411,15 +472,12 @@ const RankingScreen = () => {
                 <div style={{ 
                   width: '400px', 
                   maxWidth: '100%',
-                  minHeight: '320px',
-                  borderRadius: '12px',
-                  padding: '8px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '14px',
                   position: 'relative',
                   transform: 'translateZ(0)',
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  perspective: 1000,
-                  WebkitPerspective: 1000
+                  padding: '8px'
                 }}>
                   <DndContext
                     sensors={sensors}
@@ -430,15 +488,22 @@ const RankingScreen = () => {
                       items={words.map(w => w.id)}
                       strategy={verticalListSortingStrategy}
                     >
-                      {words.map((word) => (
-                        <SortableItem
-                          key={word.id}
-                          word={word}
-                          isExpanded={expandedWord === word.letter}
-                          onToggleExpand={handleToggleExpand}
-                          theme={theme}
-                        />
-                      ))}
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '14px',
+                        minHeight: '320px'
+                      }}>
+                        {words.map((word) => (
+                          <SortableItem
+                            key={word.id}
+                            word={word}
+                            isExpanded={expandedWord === word.letter}
+                            onToggleExpand={handleToggleExpand}
+                            theme={theme}
+                          />
+                        ))}
+                      </div>
                     </SortableContext>
                   </DndContext>
                 </div>

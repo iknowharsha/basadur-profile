@@ -93,7 +93,7 @@ Visit: [Your App URL]`;
       generator: "thrives on fresh questions and endless 'what-ifs.'",
       conceptualizer: "turns big messy thoughts into sharp, shareable ideas.",
       optimizer: "loves stress-testing concepts until the plan feels bulletproof.",
-      implementer: "rolls up sleeves, organizes people, and makes ideas real."
+      implementer: "learns through direct involvement and personal experience."
     };
     return descriptions[quadrant] || '';
   };

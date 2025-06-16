@@ -193,15 +193,15 @@ export const excludedRows = [1, 2, 5, 10, 14, 17];
 
 // Column to quadrant mapping
 export const columnToQuadrant = {
-  1: 'implementer',
-  2: 'generator', 
-  3: 'conceptualizer',
-  4: 'optimizer'
+  1: 'implementer',  // Column 1: Experiencing
+  2: 'generator',    // Column 2: Ideation
+  3: 'conceptualizer', // Column 3: Thinking
+  4: 'optimizer'     // Column 4: Evaluation
 };
 
 // Quadrant display names
 export const quadrantNames = {
-  implementer: 'IMPLEMENTER',
+  implementer : 'IMPLEMENTER',
   generator: 'GENERATOR',
   conceptualizer: 'CONCEPTUALIZER', 
   optimizer: 'OPTIMIZER'
