@@ -1,0 +1,322 @@
+Ok I am planning to create a web application for my iot class. 
+so bascially my teacher uses this method called basadur profile to understand how a person approach challenges & innovation. 
+ALl they have to do is a simple thing where they have to rank 18 sets of 4 words each. 
+SO the way they have to rank is like the top word is the one that resembles them the most. 
+leter they will be given 4  titles , generator, conceptualiser, optimizer, implementor
+
+I am planning to build this using a react , and jsx files. 
+
+I will be giving the whole complete details here on how I am gonna build this whole thing. 
+
+let us begin with fonts 
+I am using Martian mono and IBM Plex sans (Regular, medium, semibold, bold) to design this application here. 
+
+coming to the colours, we will be using these colours mainly
+
+ 
+**Background** **Colors**:
+
+> ● Primary: \#FFFFFF
+>
+> ● Secondary: \#F3F3F3
+>
+> ● Tertiary: \#E8E8E8
+
+**Copy** **Colors**:
+
+> ● Primary: \#000000
+>
+> ● Secondary: \#4B4B4B
+>
+> ● Tertiary: \#5E5E5E
+>
+> ● Quaternary: \#B7B7B7
+
+**Paired** **Accents**:
+
+> ● Bright Orange (#FFC091) + Dark Purple (#260A2F)
+>
+> ● Bright Yellow (#FFEB69) + Dark Gold (#3A341C)
+>
+> ● Bright Blue (#A0E1E1) + Dark Charcoal (#21231D)
+>
+> ● Bright Pink (#FFD7EF) + Dark Maroon (#320707)
+> Basadur Profile Ranking Web App for IoT Class
+
+**Objective**:
+
+To create a simple, intuitive web application that enables students to
+discover their Basadur Creative Problem Solving Profile by ranking 18
+sets of 4 words each. The tool is designed to keep students engaged,
+reduce fatigue, and produce a visually compelling final report that
+reflects their thinking style.
+
+**Target** **Audience**:
+
+> ● Students of the IoT class
+>
+> ● Faculty/Professors who want to understand the thinking styles of
+> their students for group activities
+
+
+Landing Screen - Detailed PRD Description
+
+✅ **1. Header Section**
+> ● "BASADUR PROFILE" text in uppercase, centered
+> ● Minimalist black text on white background
+> ● Font: Monospace or geometric sans-serif typeface
+> ● Icon Row:
+>   ○ Four distinct icons representing the four mindsets, horizontally aligned
+>   ○ Icons with their respective colors:
+>     - Generator (Blue lightbulb 💡)
+>     - Conceptualizer (Orange brain 🧠)
+>     - Optimizer (Green wrench 🔧)
+>     - Implementer (Pink rocket 🚀)
+
+✅ **2. Main Content Section**
+> ● Primary Headline:
+>   ○ Text: "Discover how you think and create in a brainstorm."
+>   ○ Styling:
+>     - Bold, clear typography
+>     - High contrast black text on white background
+>     - Split into two lines for better readability
+> ● Subtitle:
+>   ○ Text: "Rank 3 sets of words to reveal your creative strengths."
+>   ○ Styling:
+>     - Lighter weight font
+>     - Secondary text color (gray)
+>     - Single line, centered alignment
+
+✅ **3. Call-to-Action (CTA)**
+> ● Action Button:
+>   ○ Text: "Start ranking"
+>   ○ Styling:
+>     - Black background with white text
+>     - Rounded corners (pill-shaped button)
+>     - Centered placement
+>   ○ Subtext: "Takes ~5-7 minutes"
+
+✅ **4. Informational Sections**
+> ● "WHAT IS BASADUR PROFILE?" Section:
+>   ○ Section header in uppercase, bold
+>   ○ Descriptive text explaining the profile's purpose
+>   ○ Hyperlinked "Basadur profile" text in blue
+> ● Mindset Descriptions:
+>   ○ GENERATOR:
+>     - Icon: Blue lightbulb
+>     - Description: "thrives on fresh questions and endless 'what-ifs.'"
+>   ○ CONCEPTUALIZER:
+>     - Icon: Orange brain
+>     - Description: "turns big messy thoughts into sharp, shareable ideas."
+>   ○ OPTIMIZER:
+>     - Icon: Green wrench
+>     - Description: "loves stress-testing concepts until the plan feels bulletproof."
+>   ○ IMPLEMENTER:
+>     - Icon: Pink rocket
+>     - Description: "rolls up sleeves, organizes people, and makes ideas real."
+> ● "WHY SHOULD YOU CARE?" Section:
+>   ○ Section header in uppercase, bold
+>   ○ Detailed explanation focusing on:
+>     - Group project efficiency
+>     - Role-based team dynamics
+>     - Collaborative strengths
+>   ○ Key message: "Because group projects get easier when everyone knows their lane."
+> ● Footer Information:
+>   ○ Test duration: "~5-7 minutes"
+>   ○ Process overview: "rank 3 sets of 72 words"
+>   ○ Outcome preview: "colorful radar chart"
+
+✅ **5. Visual Hierarchy & Typography**
+> ● Typography System:
+>   ○ Headers: Bold, uppercase for section titles
+>   ○ Body text: Clean, readable sans-serif
+>   ○ Three distinct text weights:
+>     - Bold for headers
+>     - Regular for body text
+>     - Light for secondary information
+> ● Spacing:
+>   ○ Consistent vertical spacing between sections
+>   ○ Generous white space for readability
+>   ○ Content centered with comfortable margins
+
+✅ **6. Color Palette**
+> ● Primary Colors:
+>   ○ Background: Pure white (#FFFFFF)
+>   ○ Text: Deep black for headers and body
+>   ○ Accent colors for icons:
+>     - Generator: Light blue (#A0E1E1)
+>     - Conceptualizer: Warm orange (#FFC091)
+>     - Optimizer: Bright green (#FFEB69)
+>     - Implementer: Soft pink (#FFD7EF)
+
+✅ **7. Accessibility & UX Considerations**
+> ● Accessibility:
+>   ○ High contrast text-to-background ratios
+>   ○ Clear visual hierarchy
+>   ○ Adequate touch targets for mobile
+>   ○ Semantic HTML structure
+> ● Responsive Design:
+>   ○ Mobile-first approach
+>   ○ Centered content layout
+>   ○ Flexible spacing system
+>   ○ Readable text at all viewport sizes
+
+✅ **8. Content Strategy**
+> ● Tone of Voice:
+>   ○ Professional yet approachable
+>   ○ Clear and concise
+>   ○ Educational without being overwhelming
+> ● Information Flow:
+>   ○ Logical progression from introduction to call-to-action
+>   ○ Clear value proposition
+>   ○ Transparent about time commitment
+> ● User Engagement:
+>   ○ Immediate value communication
+>   ○ Clear next steps
+>   ○ Educational content for context
+
+Checkpoint Screens (Q0, Q6, Q12)
+
+2.5.1 Overview & Purpose
+To enhance user engagement and reduce cognitive fatigue during the 18-question ranking process, checkpoint screens are displayed at key milestones. These screens serve as brief, motivational pauses that break the test into manageable sections, reassure the user of their progress, and create a more dynamic and supportive experience.
+They appear at the following intervals:
+Before Question 1 (Initiation)
+Before Question 7 (Mid-point encouragement)
+Before Question 13 (Final stretch motivation)
+2.5.2 Common UI & Design Elements
+All checkpoint screens share a consistent layout and set of components:
+Full-Screen Background: Each milestone is distinguished by a unique, vibrant, and solid background color from the brand's bright accent palette.
+Progress Bar: A horizontal progress bar is positioned at the top of the screen.
+Left Label: Displays the current progress numerically (e.g., "0 OF 18").
+Right Label: Displays the progress as a percentage (e.g., "0%").
+Fill: The bar visually fills from left to right. The unfilled portion of the bar is a lighter tint of the background color, while the filled portion uses the paired dark color for high contrast.
+Motivational Heading: Centered on the screen, the heading uses large, friendly typography to deliver a brief, encouraging message. Part of the message is emphasized (e.g., bold or italic) to add a human, conversational tone.
+Call-to-Action (CTA) Button: A large, pill-shaped button is centered below the heading.
+Color Palette: The design strictly follows the "Paired Accents" system. The text and CTA button background color are the designated dark pair for the screen's bright background color, ensuring high contrast, readability, and brand consistency.
+2.5.3 Checkpoint-Specific Content
+1. Start of Quiz (0/18)
+Objective: To set the stage and initiate the ranking process.
+Color Pairing: Bright Blue + Dark Charcoal
+Background Color: #A0E1E1 (Bright Blue)
+Text & CTA Color: #21231D (Dark Charcoal)
+Progress: 0 OF 18 | 0%
+Heading: "Ready to discover how you think?"
+CTA Text: "Let's begin"
+2. Mid-Point (After 6/18)
+Objective: To acknowledge the user's progress and encourage them to continue.
+Color Pairing: Bright Yellow + Dark Gold
+Background Color: #FFEB69 (Bright Yellow)
+Text & CTA Color: #3A341C (Dark Gold)
+Progress: 7 OF 18 | 39%
+Heading: "Nice pace! You're cruising through this."
+CTA Text: "Keep it moving"
+3. Final Stretch (After 12/18)
+Objective: To motivate the user to complete the final set of questions.
+Color Pairing: Bright Orange + Dark Purple
+Background Color: #FFC091 (Bright Orange/Peach)
+Text & CTA Color: #260A2F (Dark Purple)
+Progress: 13 OF 18 | 72%
+Heading: "Final lap, just a few rankings left."
+CTA Text: "Finish strong”
+
+
+Ranking Screen
+
+2.6.1 Overview & Purpose
+The Ranking Screen is the core interactive component of the application. On this screen, users are presented with a set of four words, which they must rank according to how well each word describes them. The design prioritizes clarity, intuitive interaction, and seamless feedback.
+2.6.2 UI & Design Elements
+Progress Bar:
+Description: The standard progress bar component is displayed at the top. Its color corresponds to the current checkpoint's theme (e.g., blue for the first 6 questions).
+Left Label: Displays the current question number, formatted as "SET [x] OF 18".
+Right Label: Displays the percentage of questions completed within the current set/checkpoint as a whole number.
+Instructional Text:
+Description: A brief, single-line text below the progress bar provides clear instructions.
+Example Copy: "Drag to rank—top is most like you. Tap ⓘ for definitions."
+Ranking Boundary Indicators:
+Description: To provide a clear spatial context for the ranking task, two static, uppercase text labels frame the draggable area.
+Top Label: "MOST LIKE ME"
+Bottom Label: "LEAST LIKE ME"
+2.6.3 Draggable Word Component
+This component represents each of the four words to be ranked. It has two primary states.
+Normal (Collapsed) State:
+Layout: A horizontally aligned container.
+Left: A six-dot drag handle icon (⠿) indicating draggability.
+Center: The alphabetized word (e.g., "a. Ready"). The text is left-aligned next to the handle.
+Right: A circled info icon (ⓘ).
+Styling: Contained within a rounded rectangle with a light border or subtle shadow to define its boundary.
+Expanded State (On Info Click):
+Trigger: The user clicks the info icon (ⓘ).
+Appearance:
+The component expands vertically to reveal the word's definition directly below the word itself.
+The icon on the right dynamically changes from an info icon (ⓘ) to an upward-facing chevron or arrow (︿), indicating that clicking it again will collapse the view.
+Behavior: Only one Word Component can be in the expanded state at any given time. If a user expands a second component, the previously opened one automatically collapses.
+Interaction Logic:
+Persistent Alphabetization: The alphabet prefix (a., b., c., d.) is permanently associated with its corresponding word. It does not re-alphabetize when the order is changed. This provides users with a consistent reference point, confirming that they have successfully moved a specific item.
+Drag-and-Drop: Users can drag a component even when it is in its expanded state. The component smoothly animates to its new position in the list upon being dropped.
+2.6.4 Save Confirmation Indicator
+Description: An inline text indicator located below the ranking area (above the navigation buttons) provides real-time feedback on the save status of the user's rankings.
+State Flow:
+Idle State: No text or icon is visible.
+Saving State: Immediately upon a drag-and-drop action, this state is triggered for a brief duration (~300ms). It displays the text "Saving..." next to a small loading spinner icon.
+Saved State: Following the "Saving" state, it transitions to display the text "Changes saved" next to a green checkmark icon (✔). This state persists until another change is made.
+2.6.5 Navigation
+Layout: Two pill-shaped buttons are aligned at the bottom of the screen.
+Back Button:
+Style: Secondary styling (e.g., light gray background, dark text).
+Functionality: Navigates the user to the previous screen (either the previous question or a checkpoint screen). The user's saved rankings for the current question are preserved.
+Next Button:
+Style: Primary styling (e.g., solid accent color background, light text).
+Functionality: Navigates the user to the next screen (either the next question, a checkpoint screen, or the final report screen).
+
+
+Report Generation Screen (Interstitial)
+
+2.7.1 Overview & Purpose
+After the user answers the final question, a brief interstitial screen is displayed. Its purpose is to create a seamless transition and build anticipation for the results. By simulating a "calculation" process, it makes the final report feel more significant and thoughtfully prepared.
+2.7.2 UI & Design Elements
+Behavior: This screen appears automatically for a fixed duration of 2-3 seconds before transitioning to the Final Report Screen. It requires no user interaction.
+Background Color: #FFD7EF (Bright Pink), providing a vibrant and engaging visual pause.
+Heading:
+Text: "Just a second..."
+Style: Large, prominent, and bolded typography to capture attention.
+Subheading:
+Text: "we're mapping out your creative style based on how you ranked."
+Style: Smaller, lighter-weight font positioned directly below the heading.
+2.8 Final Report Screen
+2.8.1 Overview & Purpose
+This screen presents the user with their personalized Basadur Profile results. The design is a dynamic, card-based interface that is themed according to the user's dominant quadrant, providing a visually rich and personalized summary of their creative problem-solving style.
+2.8.2 Overall Structure & Dynamic Theming
+The entire report is contained within a single, large card with rounded corners. The card's color scheme is determined by the user's dominant quadrant, using the established "Paired Accents" system.
+Dominant Quadrant	Bright Accent (for Highlights)	Dark Pair (for Card Background)
+Generator	#A0E1E1 (Bright Blue)	#21231D (Dark Charcoal)
+Conceptualizer	#FFEB69 (Bright Yellow)	#3A341C (Dark Gold)
+Optimizer	#FFC091 (Bright Orange)	#260A2F (Dark Purple)
+Implementer	#FFD7EF (Bright Pink)	#320707 (Dark Maroon)
+2.8.3 UI & Design Elements
+Header:
+Text: "Your Basadur Profile"
+Style: Centered at the top of the screen (above the card), using minimalist, light-colored text to provide context without distracting from the results.
+Radar Chart (Spider Web Graph):
+Description: The top portion of the card is dedicated to a radar chart visualizing the four quadrant scores.
+Axes: The four axes are labeled: IDEATION, EXPERIENCING, EVALUATION, and THINKING.
+Styling: The grid lines, axes labels, and the plotted shape's outline all use the dominant quadrant's Bright Accent color. The plotted shape has a semi-transparent fill of the same color.
+Results Summary:
+Layout: Positioned below the radar chart, this area displays the numerical results.
+Dominant Quadrant Display:
+The user's highest score is featured prominently.
+The percentage (e.g., "60%") is displayed in a large, bold font.
+The quadrant name (e.g., "GENERATOR") is displayed below the percentage in a smaller, uppercase font.
+Both the percentage and name are colored with the dominant quadrant's Bright Accent color.
+Secondary Quadrants Display:
+The remaining three quadrants are listed vertically to the right of the dominant result.
+Each line displays the percentage followed by the quadrant name (e.g., "18% OPTIMIZER").
+The list is ordered by percentage in descending order.
+This text uses a neutral, light color (e.g., off-white) to ensure the dominant result remains the primary focal point.
+Action Buttons (CTAs):
+Layout: Two pill-shaped buttons are stacked vertically at the bottom of the card.
+Primary CTA: Download Report
+Style: Solid fill using the dominant quadrant's Bright Accent color. The text and icon use the corresponding Dark Pair color for high contrast.
+Content: An icon of a document/download (📄) followed by the text "Download report".
+Secondary CTA: Take Test Again
+Style: A lighter, secondary style (e.g., a semi-transparent light gray or a tint of the dark pair background).
+Content: An icon of a refresh/redo arrow (🔄) followed by the text "Take test again".

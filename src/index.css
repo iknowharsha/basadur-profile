@@ -1,0 +1,108 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Clean drag and drop styles - no conflicts */
+[data-rbd-drag-handle-draggable-id] {
+  cursor: grab;
+}
+
+[data-rbd-drag-handle-draggable-id]:active {
+  cursor: grabbing;
+}
+
+/* Prevent text selection during drag */
+[data-rbd-drag-handle-draggable-id] * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible {
+  outline: 2px solid #A0E1E1;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth drag and drop optimizations */
+[data-rbd-drag-handle-draggable-id] {
+  will-change: transform;
+}
+
+[data-rbd-draggable-context-id] {
+  will-change: transform;
+}
+
+/* Smooth transitions for non-dragging elements */
+[data-rbd-draggable-context-id]:not([data-rbd-drag-handle-draggable-id]) {
+  transition: transform 0.2s ease;
+}
+
+/* Optimize rendering performance */
+.draggable-word {
+  contain: layout style paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Remove any conflicting animations */
+* {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0.2s !important;
+}
+
+/* Exception for drag and drop library animations */
+[data-rbd-drag-handle-draggable-id],
+[data-rbd-draggable-context-id],
+[data-rbd-droppable-context-id] {
+  animation-duration: unset !important;
+  animation-delay: unset !important;
+  transition-duration: unset !important;
+}
+
+/* Prevent layout shifts */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+}
+
+/* Ensure proper stacking context for expanded definitions */
+[data-rbd-draggable-context-id] {
+  position: relative;
+  z-index: auto;
+}
+
+/* Override any conflicting styles during drag */
+[data-rbd-drag-handle-draggable-id] {
+  z-index: 1000 !important;
+} 

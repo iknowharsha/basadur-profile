@@ -1,0 +1,779 @@
+# 🟡 BASADUR PROFILE RANKING WEB APPLICATION
+## PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+---
+
+## **PART 1: PROJECT OVERVIEW & UI SPECIFICATIONS**
+
+### **1. PROJECT OVERVIEW**
+
+**Title:** Basadur Profile Ranking Web App for IoT Class
+
+**Objective:** To create a simple, intuitive web application that enables students to discover their Basadur Creative Problem Solving Profile by ranking 18 sets of 4 words each. The tool is designed to keep students engaged, reduce fatigue, and produce a visually compelling final report that reflects their thinking style.
+
+**Target Audience:**
+- Students of the IoT class
+- Faculty/Professors who want to understand the thinking styles of their students for group activities
+
+---
+
+### **2. DESIGN SYSTEM & BRAND GUIDELINES**
+
+#### **2.1 Typography**
+- **Primary Fonts:** Martian Mono, IBM Plex Sans
+- **Font Weights:** Light, Regular, Medium, Semibold, Bold
+- **Hierarchy:**
+  - Headers: Bold, uppercase for section titles
+  - Body text: Clean, readable sans-serif
+  - Secondary information: Light weight
+
+#### **2.2 Color Palette**
+
+**Background Colors:**
+- Primary: #FFFFFF
+- Secondary: #F3F3F3
+- Tertiary: #E8E8E8
+
+**Copy Colors:**
+- Primary: #000000
+- Secondary: #4B4B4B
+- Tertiary: #5E5E5E
+- Quaternary: #B7B7B7
+
+**Paired Accents System:**
+- Bright Orange (#FFC091) + Dark Purple (#260A2F) - *Optimizer*
+- Bright Yellow (#FFEB69) + Dark Gold (#3A341C) - *Conceptualizer*
+- Bright Blue (#A0E1E1) + Dark Charcoal (#21231D) - *Generator*
+- Bright Pink (#FFD7EF) + Dark Maroon (#320707) - *Implementer*
+
+---
+
+### **3. SCREEN SPECIFICATIONS**
+
+#### **3.1 Landing Screen**
+
+**3.1.1 Header Section**
+✅ **Brand Identity & Icons**
+> ● "BASADUR PROFILE" text in uppercase, centered
+> ● Minimalist black text on white background
+> ● Font: Monospace or geometric sans-serif typeface
+> ● **Icon Row:** Four distinct icons representing the four mindsets, horizontally aligned
+>   ○ Generator: Blue lightbulb 💡 (#A0E1E1)
+>   ○ Conceptualizer: Orange brain 🧠 (#FFC091)
+>   ○ Optimizer: Green wrench 🔧 (#FFEB69)
+>   ○ Implementer: Pink rocket 🚀 (#FFD7EF)
+
+**3.1.2 Main Content Section**
+✅ **Primary Messaging**
+> ● **Primary Headline:** "Discover how you think and create in a brainstorm."
+>   ○ Bold, clear typography
+>   ○ High contrast black text on white background
+>   ○ Split into two lines for better readability
+> ● **Subtitle:** "Rank 18 sets of 4 words to reveal your creative strengths."
+>   ○ Lighter weight font
+>   ○ Secondary text color (gray)
+>   ○ Single line, centered alignment
+
+**3.1.3 Call-to-Action (CTA)**
+✅ **Action Button**
+> ● **Text:** "Start ranking"
+> ● **Styling:**
+>   ○ Black background with white text
+>   ○ Rounded corners (pill-shaped button)
+>   ○ Centered placement
+> ● **Subtext:** "Takes ~5-7 minutes"
+
+**3.1.4 Informational Sections**
+✅ **Educational Content**
+> ● **"WHAT IS BASADUR PROFILE?" Section:**
+>   ○ Section header in uppercase, bold
+>   ○ Descriptive text explaining the profile's purpose
+>   ○ Hyperlinked "Basadur profile" text in blue
+> 
+> ● **Mindset Descriptions:**
+>   ○ **GENERATOR:** "thrives on fresh questions and endless 'what-ifs.'"
+>   ○ **CONCEPTUALIZER:** "turns big messy thoughts into sharp, shareable ideas."
+>   ○ **OPTIMIZER:** "loves stress-testing concepts until the plan feels bulletproof."
+>   ○ **IMPLEMENTER:** "rolls up sleeves, organizes people, and makes ideas real."
+> 
+> ● **"WHY SHOULD YOU CARE?" Section:**
+>   ○ Focus on group project efficiency, role-based team dynamics, collaborative strengths
+>   ○ Key message: "Because group projects get easier when everyone knows their lane."
+> 
+> ● **Footer Information:**
+>   ○ Test duration: "~5-7 minutes"
+>   ○ Process overview: "rank 18 sets of 4 words each"
+>   ○ Outcome preview: "colorful radar chart"
+
+**3.1.5 Accessibility & UX Considerations**
+✅ **Technical Requirements**
+> ● High contrast text-to-background ratios
+> ● Clear visual hierarchy
+> ● Adequate touch targets for mobile
+> ● Semantic HTML structure
+> ● Mobile-first approach
+> ● Responsive layout for mobile, tablet, and desktop
+
+---
+
+#### **3.2 Checkpoint Screens (Progress Milestones)**
+
+**3.2.1 Overview & Purpose**
+To enhance user engagement and reduce cognitive fatigue during the 18-question ranking process, checkpoint screens are displayed at key milestones. These screens serve as brief, motivational pauses that break the test into manageable sections, reassure the user of their progress, and create a more dynamic and supportive experience.
+
+**Checkpoint Intervals:**
+- Before Question 1 (Initiation)
+- Before Question 7 (Mid-point encouragement)
+- Before Question 13 (Final stretch motivation)
+
+**3.2.2 Common UI & Design Elements**
+✅ **Shared Components**
+> ● **Full-Screen Background:** Each milestone uses a unique, vibrant background color from the brand's bright accent palette
+> ● **Progress Bar:** Horizontal bar positioned at the top
+>   ○ Left Label: Current progress numerically (e.g., "0 OF 18")
+>   ○ Right Label: Progress as percentage (e.g., "0%")
+>   ○ Fill: Visually fills left to right, using paired dark color for high contrast
+> ● **Motivational Heading:** Centered, large typography with emphasized text for conversational tone
+> ● **CTA Button:** Large, pill-shaped button centered below heading
+> ● **Color System:** Follows "Paired Accents" system for consistency
+
+**3.2.3 Checkpoint-Specific Content**
+
+✅ **Checkpoint 1: Start of Quiz (0/18)**
+> ● **Objective:** Set the stage and initiate the ranking process
+> ● **Color Pairing:** Bright Blue + Dark Charcoal
+> ● **Background:** #A0E1E1 (Bright Blue)
+> ● **Text & CTA:** #21231D (Dark Charcoal)
+> ● **Progress:** 0 OF 18 | 0%
+> ● **Heading:** "Ready to discover **how you think?**"
+> ● **CTA Text:** "Let's begin"
+
+✅ **Checkpoint 2: Mid-Point (After 6/18)**
+> ● **Objective:** Acknowledge progress and encourage continuation
+> ● **Color Pairing:** Bright Yellow + Dark Gold
+> ● **Background:** #FFEB69 (Bright Yellow)
+> ● **Text & CTA:** #3A341C (Dark Gold)
+> ● **Progress:** 7 OF 18 | 39%
+> ● **Heading:** "Nice pace! **You're cruising through this.**"
+> ● **CTA Text:** "Keep it moving"
+
+✅ **Checkpoint 3: Final Stretch (After 12/18)**
+> ● **Objective:** Motivate completion of final questions
+> ● **Color Pairing:** Bright Orange + Dark Purple
+> ● **Background:** #FFC091 (Bright Orange)
+> ● **Text & CTA:** #260A2F (Dark Purple)
+> ● **Progress:** 13 OF 18 | 72%
+> ● **Heading:** "Final lap, **just a few rankings left.**"
+> ● **CTA Text:** "Finish strong"
+
+---
+
+#### **3.3 Ranking Screen**
+
+**3.3.1 Overview & Purpose**
+The Ranking Screen is the core interactive component of the application. On this screen, users are presented with a set of four words, which they must rank according to how well each word describes them. The design prioritizes clarity, intuitive interaction, and seamless feedback.
+
+**3.3.2 UI & Design Elements**
+
+✅ **Progress Bar**
+> ● Standard component displayed at top
+> ● Color corresponds to current checkpoint theme (e.g., blue for first 6 questions)
+> ● Left Label: "SET [x] OF 18"
+> ● Right Label: Percentage completed as whole number
+
+✅ **Instructional Text**
+> ● Brief, single-line instruction below progress bar
+> ● Copy: "Drag to rank—top is most like you. Tap ⓘ for definitions."
+
+✅ **Ranking Boundary Indicators**
+> ● Static, uppercase text labels framing draggable area
+> ● Top Label: "MOST LIKE ME"
+> ● Bottom Label: "LEAST LIKE ME"
+
+**3.3.3 Draggable Word Component**
+
+✅ **Normal (Collapsed) State**
+> ● **Layout:** Horizontally aligned container
+>   ○ Left: Six-dot drag handle icon (⠿) indicating draggability
+>   ○ Center: Alphabetized word (e.g., "a. Ready"), left-aligned next to handle
+>   ○ Right: Circled info icon (ⓘ)
+> ● **Styling:** Rounded rectangle with light border or subtle shadow
+
+✅ **Expanded State (On Info Click)**
+> ● **Trigger:** User clicks info icon (ⓘ)
+> ● **Appearance:**
+>   ○ Component expands vertically to reveal word definition below word
+>   ○ Info icon changes to upward-facing chevron 
+> ● **Behavior:** Only one component can be expanded at a time
+
+✅ **Interaction Logic**
+> ● **Persistent Alphabetization:** Alphabet prefix (a., b., c., d.) permanently associated with word - does NOT re-alphabetize when order changes
+> ● **Drag-and-Drop:** Components draggable even when expanded, smooth animation to new position
+
+**3.3.4 Save Confirmation Indicator**
+✅ **Real-time Feedback**
+> ● Inline text indicator below ranking area (above navigation buttons)
+> ● **State Flow:**
+>   ○ **Idle State:** No text/icon visible
+>   ○ **Saving State:** "Saving..." with spinner (~300ms duration)
+>   ○ **Saved State:** "Changes saved" with green checkmark (✔) - persists until next change
+
+**3.3.5 Navigation**
+✅ **Button Layout**
+> ● Two pill-shaped buttons aligned at bottom of screen
+> ● **Back Button:**
+>   ○ Secondary styling (light gray background, dark text)
+>   ○ Navigates to previous screen, preserves current rankings
+> ● **Next Button:**
+>   ○ Primary styling (solid accent color background, light text)
+>   ○ Advances to next screen/checkpoint/report
+
+---
+
+#### **3.4 Name Collection Screen**
+
+**3.4.1 Overview & Purpose**
+After the user answers the final question, this screen appears. Its primary purpose is to collect the user's full name to personalize the final report. It serves as an interactive interstitial step, making the "report generation" time feel productive rather than like a passive wait.
+
+**3.4.2 UI & Design Elements**
+✅ **Visual Design**
+> ● **Color Palette:** Bright Pink + Dark Maroon pairing
+>   ○ Background: #FFD7EF (Bright Pink)
+>   ○ Text & Button: #320707 (Dark Maroon)
+> ● **Heading:** "While we generate your report"
+>   ○ Standard weight font, positioned at top for context
+> ● **Primary Prompt:** "**Share your full name**"
+>   ○ Large, bold, slightly italicized font - main call to action
+> ● **Text Input Field:**
+>   ○ Single, centered field with rounded corners
+>   ○ Lighter tint of pink background for visual separation
+> ● **CTA Button:** "Submit"
+>   ○ Pill-shaped, solid Dark Maroon background, light text
+
+**3.4.3 Interaction & Behavior**
+✅ **Critical Requirements**
+> ● **Automatic Keyboard Focus:** Input field MUST be auto-focused on screen load
+>   ○ On mobile: Triggers native virtual keyboard immediately
+>   ○ Essential for frictionless experience
+> ● **Input Validation:**
+>   ○ Submit button disabled by default
+>   ○ Enabled only after at least one character entered
+> ● **Submission Flow:**
+>   ○ User types name → clicks Submit → name captured/stored → transition to Final Report
+
+**3.4.4 Data Handling & Report Personalization**
+✅ **Data Management**
+> ● **Storage:** Name stored temporarily in application state for current session only
+> ● **Personalization:** Used in Final Report for customized messaging
+>   ○ Header: "[User's Name]'s Basadur Profile"
+>   ○ Results: "[User's Name] is a 60% GENERATOR"
+
+---
+
+#### **3.5 Final Report Screen**
+
+**3.5.1 Overview & Purpose**
+This screen presents the user with their personalized Basadur Profile results. The design is a dynamic, card-based interface that is themed according to the user's dominant quadrant, providing a visually rich and personalized summary of their creative problem-solving style.
+
+**3.5.2 Dynamic Theming System**
+✅ **Color-Coded Results**
+> The entire report is contained within a single, large card with rounded corners. The card's color scheme is determined by the user's dominant quadrant, using the established "Paired Accents" system:
+
+| Dominant Quadrant | Bright Accent (Highlights) | Dark Pair (Card Background) |
+|-------------------|----------------------------|----------------------------|
+| **Generator** | #A0E1E1 (Bright Blue) | #21231D (Dark Charcoal) |
+| **Conceptualizer** | #FFEB69 (Bright Yellow) | #3A341C (Dark Gold) |
+| **Optimizer** | #FFC091 (Bright Orange) | #260A2F (Dark Purple) |
+| **Implementer** | #FFD7EF (Bright Pink) | #320707 (Dark Maroon) |
+
+**3.5.3 UI & Design Elements**
+
+✅ **Header**
+> ● **Text:** "Your Basadur Profile" (or personalized with user's name)
+> ● **Style:** Centered above card, minimalist light-colored text
+
+✅ **Radar Chart (Spider Web Graph)**
+> ● **Location:** Top portion of card
+> ● **Four Axes:** IDEATION, EXPERIENCING, EVALUATION, THINKING
+> ● **Styling:** Grid lines, axes labels, and plotted shape use dominant quadrant's Bright Accent color
+> ● **Fill:** Semi-transparent fill of same color
+
+✅ **Results Summary**
+> ● **Dominant Quadrant Display:**
+>   ○ Percentage in large, bold font (e.g., "60%")
+>   ○ Quadrant name below in smaller, uppercase font (e.g., "GENERATOR")
+>   ○ Both colored with dominant quadrant's Bright Accent color
+> ● **Secondary Quadrants Display:**
+>   ○ Listed vertically to right of dominant result
+>   ○ Format: "18% OPTIMIZER"
+>   ○ Ordered by percentage (descending)
+>   ○ Neutral, light color text to maintain focus on dominant result
+
+✅ **Action Buttons (CTAs)**
+> ● **Layout:** Two pill-shaped buttons stacked vertically at bottom of card
+> ● **Primary CTA:** "Download report"
+>   ○ Document/download icon (📄) + text
+>   ○ Solid fill using dominant quadrant's Bright Accent color
+>   ○ Text/icon use corresponding Dark Pair color for high contrast
+> ● **Secondary CTA:** "Take test again"
+>   ○ Refresh/redo arrow icon (🔄) + text
+>   ○ Lighter, secondary styling (semi-transparent light gray or tint of dark pair background)
+
+---
+
+## **END OF PART 1**
+
+*Continue to Part 2: User Experience & Interaction Design*
+
+---
+
+## **PART 2: USER EXPERIENCE & INTERACTION DESIGN**
+
+### **4. USER FLOW & NAVIGATION**
+
+#### **4.1 Complete User Journey**
+```
+Landing Screen → Checkpoint 1 (Start) → Questions 1-6 → Checkpoint 2 (Mid-point) → 
+Questions 7-12 → Checkpoint 3 (Final Stretch) → Questions 13-18 → 
+Name Collection → Final Report
+```
+
+#### **4.2 Navigation Logic**
+✅ **Forward Navigation**
+> ● **From Landing:** Direct to Checkpoint 1
+> ● **From Checkpoints:** Direct to next ranking question
+> ● **From Ranking Questions:** 
+>   ○ Questions 1-5: Next ranking question
+>   ○ Question 6: Checkpoint 2
+>   ○ Questions 7-11: Next ranking question  
+>   ○ Question 12: Checkpoint 3
+>   ○ Questions 13-17: Next ranking question
+>   ○ Question 18: Name Collection Screen
+> ● **From Name Collection:** Final Report Screen
+
+✅ **Backward Navigation**
+> ● **Browser Back Button:** Seamlessly navigates to previous screen using router
+> ● **In-App Back Button:** Same behavior as browser back
+> ● **Progress Preservation:** All rankings saved continuously in LocalStorage
+
+---
+
+### **5. CALCULATION LOGIC & DATA MODEL**
+
+#### **5.1 Key Data Points to Track**
+
+| Data Point | Description & Purpose |
+|------------|----------------------|
+| **User Rank** | The user's rank (1-4) for each word in all 18 sets. This is the primary input. |
+| **Basadur Score** | The converted score (1-4) for each word, used for the actual calculation. |
+| **Column Totals** | The four raw score totals, one for each column, summed from the 12 included rows. |
+| **Final Percentages** | The four final percentage scores, one for each quadrant. Used for report display and radar chart. |
+| **Dominant Quadrant** | The quadrant with the highest percentage score. Highlighted in the final report. |
+
+#### **5.2 Step 1: User Rank to Basadur Score Conversion**
+
+The user's drag-and-drop action creates a ranking from 1 (top, "most like me") to 4 (bottom, "least like me"). The original Basadur inventory uses a 4-point system where 4 is "most characteristic." To align our UI with the official scoring, we must convert the user's rank.
+
+✅ **User Rank System**
+> ● `1`: Top position (Most like me)
+> ● `2`: Second position
+> ● `3`: Third position
+> ● `4`: Bottom position (Least like me)
+
+✅ **Conversion Formula**
+```
+Basadur Score = 5 - User Rank
+```
+
+✅ **Conversion Examples**
+> ● User Rank 1 (top) → Basadur Score = 5 - 1 = 4
+> ● User Rank 4 (bottom) → Basadur Score = 5 - 4 = 1
+
+#### **5.3 Step 2: Column Score Calculation**
+
+The calculation uses the `Basadur Score` for each word, summed column-wise, but only for specific rows.
+
+✅ **Row Exclusion (Official Basadur Methodology)**
+> **Excluded Rows:** 1, 2, 5, 10, 14, 17 (6 rows total)
+
+✅ **Row Inclusion**
+> **Included Rows:** 3, 4, 6, 7, 8, 9, 11, 12, 13, 15, 16, 18 (12 rows total)
+
+✅ **Summation Process**
+> 1. For each of the 12 included rows, get the `Basadur Score` for the word in each of the four columns
+> 2. Sum these scores for each column individually
+> 3. Result: Four raw `Column Totals`
+
+#### **5.4 Step 3: Mapping Columns to Quadrants**
+
+Based on the original Basadur methodology and final report UI requirements:
+
+| Column Number | Original Dimension | Final Quadrant Profile |
+|---------------|-------------------|----------------------|
+| **Column 1** | Experiencing | **Implementer** |
+| **Column 2** | Ideation | **Generator** |
+| **Column 3** | Thinking | **Conceptualizer** |
+| **Column 4** | Evaluation | **Optimizer** |
+
+#### **5.5 Step 4: Final Percentage Calculation**
+
+✅ **Maximum Score Calculation**
+> Maximum possible score for any column = 12 (included rows) × 4 (max Basadur Score) = **48**
+
+✅ **Percentage Formula**
+```
+Quadrant % = (Column Total / 48) × 100
+```
+> Result rounded to whole number
+
+#### **5.6 Step 5: Final Report Data Generation**
+
+✅ **Dominant Quadrant Identification**
+> ● Identify quadrant with highest percentage
+> ● Display prominently in report
+
+✅ **Secondary Quadrants Ordering**
+> ● List remaining three quadrants in descending order by percentage
+
+✅ **Radar Chart Data Mapping**
+> ● **Ideation Axis:** Plots the **Generator** percentage
+> ● **Experiencing Axis:** Plots the **Implementer** percentage  
+> ● **Evaluation Axis:** Plots the **Optimizer** percentage
+> ● **Thinking Axis:** Plots the **Conceptualizer** percentage
+
+---
+
+### **6. ERROR HANDLING & DATA PERSISTENCE**
+
+#### **6.1 Data Persistence Strategy**
+✅ **LocalStorage Implementation**
+> ● Application state (all rankings + current question number) saved to browser's LocalStorage on every change
+> ● Data timestamped to manage session validity
+> ● **Session Grace Period:** 10-minute Time To Live (TTL)
+> ● If user returns within 10 minutes: Progress restored to exact last position
+> ● If more than 10 minutes passed: Session expired, user starts from beginning
+
+#### **6.2 Progress Loss Scenarios**
+
+✅ **Accidental Browser/Tab Closure or Refresh**
+> ● **Behavior:** Progress safe within 10-minute grace period
+> ● **Recovery:** System checks timestamp of saved data on reload
+> ● **Within window:** User restored to exact last position
+> ● **Expired:** User starts fresh
+
+✅ **Browser "Back" Button Navigation**
+> ● **Behavior:** Application uses router to manage history
+> ● **Function:** Clicking browser "Back" navigates to previous screen seamlessly
+> ● **Data:** No warning prompt needed - all progress continuously saved
+
+#### **6.3 Mobile-Specific Scenarios**
+
+✅ **Interruption (Phone Call, Notification)**
+> ● **Grace Period:** 10-minute session TTL applies
+> ● **Within 10 minutes:** Session intact upon return
+> ● **Beyond 10 minutes:** Must start over
+
+✅ **Device Rotation**
+> ● **Behavior:** Non-interrupting event
+> ● **Response:** Interface re-renders to fit new orientation
+> ● **Data:** All progress and state maintained seamlessly via LocalStorage
+
+---
+
+### **7. ACCESSIBILITY & TECHNICAL REQUIREMENTS**
+
+#### **7.1 Accessibility Standards**
+✅ **WCAG Compliance**
+> ● Color contrast for text and background meets WCAG standards
+> ● All interactive elements have clear focus states
+> ● CTAs clearly labeled and easy to tap/click
+> ● Draggable elements have accessible aria labels to support screen readers
+
+#### **7.2 Technical Stack**
+✅ **Front-End Framework**
+> ● **Framework:** React (preferred)
+> ● **State Management:** React hooks (useState, useEffect) or Context API for global state
+> ● **Drag-and-Drop:** react-beautiful-dnd or similar for draggable components
+> ● **Charting:** react-chartjs-2 for radar chart visualization
+> ● **Styling:** Tailwind CSS for rapid development, consistent spacing, and responsive breakpoints
+> ● **Font Loading:** Google Fonts or CDN for Martian Mono and IBM Plex Sans
+
+#### **7.3 Data Persistence & Security**
+✅ **Backend Requirements**
+> ● **No permanent backend database** (prototype approach)
+> ● Rankings stored in local state or localStorage for session persistence
+> ● Future extension possibility: Simple JSON-based REST endpoint for profile data analysis
+
+✅ **Security & Privacy**
+> ● **No data sent to servers** - all data remains local in browser for short-term use only
+> ● No user tracking, analytics, or backend processing implemented
+> ● LocalStorage automatically cleared after session expiry
+
+#### **7.4 Responsive Design**
+✅ **Device Support**
+> ● **Mobile-first approach:** Optimized for mobile devices primarily
+> ● **Tablet compatibility:** Responsive layout adapts to tablet screens
+> ● **Desktop support:** Scales appropriately for larger screens
+> ● **Touch interactions:** Optimized for touch-based drag and drop
+> ● **Keyboard navigation:** Ensure keyboard accessibility for draggable components
+
+---
+
+## **END OF PART 2**
+
+*Continue to Part 3: Implementation Guidelines & Quality Assurance*
+
+---
+
+## **PART 3: IMPLEMENTATION GUIDELINES & QUALITY ASSURANCE**
+
+### **8. WORD SETS & CONTENT STRUCTURE**
+
+#### **8.1 Word Set Organization**
+✅ **Data Structure Requirements**
+> ● **Total Sets:** 18 sets of 4 words each (72 words total)
+> ● **Column Assignment:** Each word belongs to a specific column (1-4) corresponding to Basadur dimensions
+> ● **Row Exclusion Logic:** Built into calculation system (rows 1, 2, 5, 10, 14, 17 excluded from scoring)
+> ● **Alphabetical Prefixing:** Each word gets permanent alphabetical identifier (a., b., c., d.) that persists regardless of user reordering
+
+#### **8.2 Word Component Data Model**
+```javascript
+// Example word object structure
+{
+  id: "word_3_a",           // Unique identifier: set_row_letter
+  text: "Ready",            // Display text
+  definition: "Prepared and willing to act immediately",
+  column: 2,                // Basadur column (1-4)
+  row: 3,                   // Question set number (1-18)
+  letter: "a",              // Permanent alphabetical prefix
+  userRank: null,           // User's assigned rank (1-4)
+  basadurScore: null        // Converted score for calculation
+}
+```
+
+#### **8.3 Content Requirements**
+✅ **Word Definitions**
+> ● Every word must have a clear, concise definition
+> ● Definitions should be professional and accessible to graduate-level students
+> ● Length: 1-2 sentences maximum for mobile readability
+
+---
+
+### **9. DEVELOPMENT PHASES & MILESTONES**
+
+#### **9.1 Phase 1: Core Infrastructure (Weekend Day 1)**
+✅ **Foundation Setup**
+> ● React app initialization with routing
+> ● Basic component structure for all screens
+> ● Color system and typography implementation
+> ● LocalStorage utility functions
+> ● Basic navigation between screens
+
+#### **9.2 Phase 2: Interactive Components (Weekend Day 2)**
+✅ **Drag & Drop Implementation**
+> ● Draggable word components with react-beautiful-dnd
+> ● Save state management and LocalStorage integration
+> ● Progress bar component with dynamic theming
+> ● Checkpoint screen implementations
+
+#### **9.3 Phase 3: Calculation & Reporting (Weekend Day 2)**
+✅ **Logic Implementation**
+> ● Basadur scoring algorithm
+> ● Percentage calculation system
+> ● Radar chart integration
+> ● Final report screen with dynamic theming
+
+#### **9.4 Phase 4: Polish & Testing (Weekend Day 2)**
+✅ **Quality Assurance**
+> ● Mobile responsiveness testing
+> ● Error handling implementation
+> ● Accessibility improvements
+> ● Performance optimization
+
+---
+
+### **10. QUALITY ASSURANCE & TESTING**
+
+#### **10.1 Functional Testing Checklist**
+✅ **Core Functionality**
+> ● [ ] All 18 word sets load correctly
+> ● [ ] Drag and drop works smoothly on mobile and desktop
+> ● [ ] Progress saves and restores correctly from LocalStorage
+> ● [ ] Back navigation preserves user rankings
+> ● [ ] Calculation algorithm produces accurate percentages
+> ● [ ] Radar chart displays correct data
+> ● [ ] Final report theming matches dominant quadrant
+
+#### **10.2 User Experience Testing**
+✅ **Interaction Quality**
+> ● [ ] Checkpoint screens appear at correct intervals
+> ● [ ] Save confirmation provides clear feedback
+> ● [ ] Name collection screen auto-focuses input field
+> ● [ ] All buttons have appropriate touch targets (44px minimum)
+> ● [ ] Color contrast meets accessibility standards
+> ● [ ] Loading states provide appropriate feedback
+
+#### **10.3 Edge Case Testing**
+✅ **Error Scenarios**
+> ● [ ] LocalStorage disabled/unavailable
+> ● [ ] Session expiry after 10 minutes
+> ● [ ] Browser refresh during ranking
+> ● [ ] Network interruption (should not affect local-only app)
+> ● [ ] Device rotation during interaction
+
+#### **10.4 Performance Requirements**
+✅ **Speed & Responsiveness**
+> ● Page load time: < 2 seconds on 3G connection
+> ● Drag interaction response: < 100ms
+> ● Screen transitions: < 300ms
+> ● LocalStorage operations: < 50ms
+
+---
+
+### **11. DEPLOYMENT & HOSTING**
+
+#### **11.1 Hosting Requirements**
+✅ **Static Site Hosting**
+> ● **Recommended:** Vercel, Netlify, or GitHub Pages
+> ● **Requirements:** HTTPS enabled, custom domain support
+> ● **Build Process:** Standard React build pipeline
+> ● **Environment:** No backend required - fully client-side application
+
+#### **11.2 Domain & Branding**
+✅ **URL Structure**
+> ● **Suggested Domain:** basadur-profile.vercel.app or similar
+> ● **Clean URLs:** React Router with history mode
+> ● **SEO Considerations:** Basic meta tags for sharing
+
+---
+
+
+#### **12.2 Medium-Term Enhancements**
+✅ **Extended Functionality**
+> ● PDF report generation with detailed explanations
+> ● Email sharing capability for results
+> ● Comparison tool for team analysis
+> ● Admin dashboard for instructors
+
+#### **12.3 Long-Term Vision**
+✅ **Platform Evolution**
+> ● Multi-language support
+> ● Integration with Learning Management Systems (LMS)
+> ● Advanced team formation algorithms based on profiles
+> ● Historical data analysis and trends
+
+---
+
+### **13. PROJECT CONSTRAINTS & ASSUMPTIONS**
+
+#### **13.1 Technical Constraints**
+✅ **Limitations**
+> ● **Timeline:** Weekend project scope (2-3 days maximum)
+> ● **Complexity:** No complex animations or advanced interactions
+> ● **Backend:** No server-side processing or permanent data storage
+> ● **Testing:** Limited to manual testing due to time constraints
+
+#### **13.2 User Assumptions**
+✅ **Target Audience Expectations**
+> ● Users have basic familiarity with drag-and-drop interfaces
+> ● Modern browser support (Chrome, Safari, Firefox, Edge)
+> ● Mobile device usage expected to be primary interaction method
+> ● Professional context - users motivated to complete assessment
+
+#### **13.3 Content Assumptions**
+✅ **Word Set Requirements**
+> ● All 72 words and definitions provided by instructor/Basadur methodology
+> ● Content reviewed for appropriateness and clarity
+> ● No real-time content updates required
+
+---
+
+### **14. SUCCESS METRICS & EVALUATION**
+
+#### **14.1 Primary Success Criteria**
+✅ **Core Objectives**
+> ● **Completion Rate:** >85% of users who start complete all 18 questions
+> ● **User Experience:** Smooth, intuitive interaction without confusion
+> ● **Accuracy:** Calculation results match official Basadur methodology
+> ● **Performance:** App loads and responds quickly on mobile devices
+
+#### **14.2 User Feedback Indicators**
+✅ **Qualitative Measures**
+> ● Users can complete assessment without external help
+> ● Results feel accurate and meaningful to users
+> ● Interface feels professional and trustworthy
+> ● No significant usability complaints or confusion
+
+#### **14.3 Technical Success Indicators**
+✅ **Implementation Quality**
+> ● Zero critical bugs in core functionality
+> ● Responsive design works across device sizes
+> ● LocalStorage persistence functions reliably
+> ● Calculation algorithm produces consistent results
+
+---
+
+## **APPENDIX: TECHNICAL SPECIFICATIONS**
+
+### **A. Component Architecture**
+```
+App
+├── Router
+├── Landing
+├── Checkpoint
+├── Ranking
+│   ├── ProgressBar
+│   ├── WordComponent
+│   └── SaveIndicator
+├── NameCollection
+└── FinalReport
+    ├── RadarChart
+    └── ResultsCard
+```
+
+### **B. State Management Structure**
+```javascript
+// Global application state
+{
+  currentScreen: "landing" | "checkpoint" | "ranking" | "nameCollection" | "report",
+  currentQuestion: 1-18,
+  userRankings: {
+    1: { a: 2, b: 1, c: 4, d: 3 },  // Question 1 rankings
+    2: { a: 1, b: 3, c: 2, d: 4 },  // Question 2 rankings
+    // ... etc
+  },
+  userName: "",
+  sessionTimestamp: Date,
+  calculatedResults: {
+    generator: 45,
+    conceptualizer: 23,
+    optimizer: 18,
+    implementer: 14
+  }
+}
+```
+
+### **C. LocalStorage Schema**
+```javascript
+// Stored in localStorage as JSON
+{
+  "basadur_session": {
+    "data": { /* application state */ },
+    "timestamp": 1640995200000,
+    "version": "1.0"
+  }
+}
+```
+
+---
+
+## **END OF PRODUCT REQUIREMENTS DOCUMENT**
+
+**Document Version:** 1.0  
+**Last Updated:** [Current Date]  
+**Total Pages:** 3 Parts  
+**Estimated Development Time:** 2-3 Days (Weekend Project)
+
+---
+
+*This PRD serves as the complete specification for the Basadur Profile Ranking Web Application. All requirements, design specifications, and technical details are documented to ensure successful implementation within the weekend project timeline.* 
