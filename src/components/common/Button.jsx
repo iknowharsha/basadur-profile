@@ -128,7 +128,21 @@ const Button = ({
       onClick={handleClick}
       disabled={disabled}
     >
-      {icon && <span className="button-icon">{icon}</span>}
+      {icon && (
+        <span 
+          className="button-icon" 
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '20px', // Standard icon size (1.25em)
+            width: '20px',
+            height: '20px'
+          }}
+        >
+          {icon}
+        </span>
+      )}
       <span className="button-text">{children}</span>
     </button>
   );

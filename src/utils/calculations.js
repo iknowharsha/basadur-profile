@@ -32,17 +32,10 @@ export const calculateColumnTotals = (userRankings, wordSets) => {
   const columnTotals = { 1: 0, 2: 0, 3: 0, 4: 0 };
   let processedRows = 0;
   
-  console.log('Starting column totals calculation with rankings:', userRankings);
-  
   // Only process included rows (exclude rows 1, 2, 5, 10, 14, 17)
   wordSets.forEach(set => {
     if (!excludedRows.includes(set.row)) {
       const rankings = userRankings[set.row];
-      console.log(`Processing row ${set.row}:`, {
-        rankings,
-        words: set.words.map(w => `${w.letter}(${w.column})`)
-      });
-      
       if (rankings) {
         // Validate rankings before processing
         if (!validateRankings(rankings)) {
@@ -56,7 +49,6 @@ export const calculateColumnTotals = (userRankings, wordSets) => {
           if (userRank) {
             const basadurScore = convertRankToBasadurScore(userRank);
             columnTotals[word.column] += basadurScore;
-            console.log(`Row ${set.row}, Word ${word.letter}: Column ${word.column}, Rank ${userRank} → Score ${basadurScore}`);
           }
         });
       }
@@ -68,7 +60,6 @@ export const calculateColumnTotals = (userRankings, wordSets) => {
     console.warn(`Warning: Processed ${processedRows} rows instead of expected 12 rows`);
   }
   
-  console.log('Final column totals:', columnTotals);
   return columnTotals;
 };
 
@@ -77,15 +68,12 @@ export const calculateQuadrantPercentages = (columnTotals) => {
   // Calculate the total score across all columns
   const totalScore = Object.values(columnTotals).reduce((sum, val) => sum + val, 0);
   
-  console.log('Calculating percentages with total score:', totalScore);
-  
   // Calculate percentages relative to total score
   const percentages = {};
   Object.keys(columnTotals).forEach(column => {
     const quadrant = columnToQuadrant[parseInt(column)];
     // Normalize to percentage of total
     percentages[quadrant] = Math.round((columnTotals[column] / totalScore) * 100);
-    console.log(`Column ${column} (${quadrant}): ${columnTotals[column]} / ${totalScore} = ${percentages[quadrant]}%`);
   });
   
   return percentages;

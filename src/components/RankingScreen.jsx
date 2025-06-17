@@ -244,14 +244,6 @@ const RankingScreen = () => {
     // Get existing rankings from state
     const existingRankings = state.userRankings[currentQuestionNum];
 
-    // Debug logging
-    console.log(`Question ${currentQuestionNum} - Current Word Order:`, words.map(w => ({
-      letter: w.letter,
-      text: w.text,
-      column: w.column,
-      rank: newRankings[w.letter]
-    })));
-
     // Deep compare rankings to prevent unnecessary updates
     const hasChanged = !existingRankings || 
       Object.keys(newRankings).some(letter => 
@@ -264,13 +256,6 @@ const RankingScreen = () => {
       const saveStatusTimeout = setTimeout(() => {
         setSaveStatus('saving');
         
-        // Debug logging before dispatch
-        console.log(`Saving rankings for question ${currentQuestionNum}:`, {
-          newRankings,
-          existingRankings,
-          words: words.map(w => `${w.letter}(${w.column}): ${newRankings[w.letter]}`)
-        });
-
         // Dispatch ranking update
         dispatch({
           type: 'UPDATE_RANKINGS',
@@ -311,15 +296,6 @@ const RankingScreen = () => {
         const newItems = [...items];
         const [movedItem] = newItems.splice(oldIndex, 1);
         newItems.splice(newIndex, 0, movedItem);
-
-        // Debug logging for drag end
-        console.log('Drag completed:', {
-          questionNum: currentQuestionNum,
-          movedItem: `${movedItem.letter}(${movedItem.column})`,
-          fromIndex: oldIndex,
-          toIndex: newIndex,
-          newOrder: newItems.map(w => `${w.letter}(${w.column})`)
-        });
         
         return newItems;
       });

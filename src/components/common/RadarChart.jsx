@@ -38,8 +38,9 @@ const RadarChart = ({ data, theme }) => {
         pointBorderColor: theme.dark,
         pointHoverBackgroundColor: theme.dark,
         pointHoverBorderColor: theme.bright,
-        pointRadius: 6,
-        pointHoverRadius: 8,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        cursor: 'pointer',
       },
     ],
   };
@@ -61,7 +62,7 @@ const RadarChart = ({ data, theme }) => {
         displayColors: false,
         callbacks: {
           label: function(context) {
-            return `${context.label}: ${context.parsed.r}%`;
+            return `${context.parsed.r}%`;
           }
         }
       },
@@ -69,18 +70,18 @@ const RadarChart = ({ data, theme }) => {
     scales: {
       r: {
         beginAtZero: true,
-        max: 100,
+        max: 50,
         min: 0,
         ticks: {
-          stepSize: 25,
+          stepSize: 10,
           color: theme.bright,
           font: {
-            size: 12,
+            size: 10,
             family: 'IBM Plex Sans'
           },
           backdropColor: 'transparent',
           callback: function(value) {
-            return value + '%';
+            return value;
           }
         },
         grid: {
@@ -89,13 +90,13 @@ const RadarChart = ({ data, theme }) => {
         },
         angleLines: {
           color: theme.bright,
-          lineWidth: 1,
+          lineWidth: 0.6,
         },
         pointLabels: {
           color: theme.bright,
           font: {
-            size: 14,
-            weight: 'bold',
+            size: 13,
+            weight: 450,
             family: 'IBM Plex Sans'
           },
           padding: 20,
