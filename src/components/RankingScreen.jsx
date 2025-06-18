@@ -24,7 +24,7 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    height: isExpanded ? 'auto' : '72px',
+    height: isExpanded ? 'auto' : '64px',
     userSelect: 'none',
     position: 'relative',
     touchAction: 'none',
@@ -36,7 +36,7 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
   };
 
   const cardStyle = {
-    borderRadius: '24px',
+    borderRadius: '30px',
     border: `1px solid ${isDragging ? theme.fill : '#D3D3D3'}`,
     backgroundColor: '#FFFFFF',
     boxShadow: isDragging 
@@ -104,7 +104,8 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
               <span style={{
                 fontFamily: 'IBM Plex Sans, sans-serif',
                 fontSize: '16px',
-                fontWeight: '600',
+                fontWeight: '500',
+                letterSpacing: '0px',
                 color: isDragging ? theme.text : '#000000'
               }}>
                 {word.text}
@@ -135,7 +136,7 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
           >
             <div style={{
               transition: 'transform 200ms ease',
-              transform: isExpanded ? 'rotate(0deg)' : 'rotate(180deg)'
+              transform: isExpanded ? 'rotate(0deg)' : 'rotate(0deg)'
             }}>
               {isExpanded ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -156,10 +157,10 @@ function SortableItem({ word, isExpanded, onToggleExpand, theme }) {
           maxHeight: isExpanded ? '200px' : '0',
           overflow: 'hidden',
           transition: EXPAND_TRANSITION,
-          padding: isExpanded ? '0 16px 20px 52px' : '0 16px',
+          padding: isExpanded ? '0 16px 20px 52px' : '0 16px 0 52px',
           opacity: isExpanded ? 1 : 0,
           backgroundColor: '#FFFFFF',
-          marginTop: isExpanded ? '-8px' : '0'
+          marginTop: isExpanded ? '-4px' : '0'
         }}>
           <div style={{
             fontFamily: 'IBM Plex Sans, sans-serif',
@@ -186,6 +187,7 @@ const RankingScreen = () => {
   const [words, setWords] = useState([]);
   const [expandedWord, setExpandedWord] = useState(null);
   const [saveStatus, setSaveStatus] = useState('idle');
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
   // Configure DnD sensors
@@ -203,6 +205,8 @@ const RankingScreen = () => {
     if (currentQuestionSet && currentQuestionNum) {
       setExpandedWord(null);
       setIsInitialized(false);
+      setHasUserInteracted(false);
+      setSaveStatus('idle');
       
       const existingRankings = state.userRankings[currentQuestionNum];
       
@@ -224,16 +228,30 @@ const RankingScreen = () => {
           id: `${currentQuestionNum}-${word.letter}`
         }));
         setWords(wordsWithIds);
+
+        // Save the default alphabetical rankings immediately so results can be
+        // calculated even when the user doesn't reorder. This does NOT trigger
+        // the "Changes saved" signifier because we leave hasUserInteracted as false.
+        const defaultRankings = {};
+        wordsWithIds.forEach((w, idx) => {
+          defaultRankings[w.letter] = idx + 1;
+        });
+
+        dispatch({
+          type: 'UPDATE_RANKINGS',
+          questionNumber: currentQuestionNum,
+          rankings: defaultRankings
+        });
       }
       
       setIsInitialized(true);
     }
-  }, [currentQuestionNum, currentQuestionSet, state.userRankings]);
+  }, [currentQuestionNum, currentQuestionSet, state.userRankings, dispatch]);
 
   // Save rankings whenever word order changes
   useEffect(() => {
     // Skip effect if not ready or invalid state
-    if (!isInitialized || words.length !== 4) return;
+    if (!isInitialized || !hasUserInteracted || words.length !== 4) return;
 
     // Memoize rankings calculation
     const newRankings = {};
@@ -280,6 +298,7 @@ const RankingScreen = () => {
   }, [
     words,               // Only when word order changes
     isInitialized,       // Only when initialization state changes
+    hasUserInteracted,   // Only after the user has interacted
     currentQuestionNum,  // Only when question number changes
     dispatch,            // Stable dispatch function
     state.userRankings   // Only when rankings in global state change
@@ -299,6 +318,7 @@ const RankingScreen = () => {
         
         return newItems;
       });
+      setHasUserInteracted(true);
     }
   };
 
@@ -391,7 +411,7 @@ const RankingScreen = () => {
         <div style={{
           position: 'absolute',
           left: '50%',
-          top: '40px',
+          top: '16px',
           transform: 'translateX(-50%)',
           width: '520px',
           maxWidth: '90vw'
@@ -416,7 +436,7 @@ const RankingScreen = () => {
               letterSpacing: '-0.16px',
               textAlign: 'center'
             }}>
-              Drag to rank—top is most like you. Tap ⓘ for definitions.
+              Drag & order the words : from most like you to least.
             </p>
           </div>
         </div>
@@ -486,46 +506,30 @@ const RankingScreen = () => {
               </div>
             </div>
 
-            {/* Save Status */}
-            {saveStatus === 'saved' && (
-              <div style={{
-                position: 'absolute',
-                top: '100%',
-                left: '50%',
-                transform: 'translateX(-50%)',
+            {/* Save Status – rendered permanently to avoid layout shift */}
+            <div
+              style={{
+                marginTop: '16px',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '8px',
-                marginTop: '16px',
-                backgroundColor: '#FFFFFF',
-                padding: '8px 16px',
-                borderRadius: '20px',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                border: '1px solid #E8E8E8',
-                zIndex: 1000,
-                animation: 'fadeInUp 0.3s ease-out'
+                opacity: saveStatus === 'saved' ? 1 : 0,
+                visibility: saveStatus === 'saved' ? 'visible' : 'hidden',
+                transition: 'opacity 0.3s ease',
+                pointerEvents: 'none'
+              }}
+            >
+              <span style={{
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontSize: '14px',
+                color: '#494949',
+                fontWeight: '500'
               }}>
-                <span style={{
-                  fontFamily: 'IBM Plex Sans, sans-serif',
-                  fontSize: '14px',
-                  color: '#494949',
-                  fontWeight: '500'
-                }}>
-                  Changes saved
-                </span>
-                <div style={{
-                  width: '16px',
-                  height: '16px',
-                  backgroundColor: '#129729',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <span style={{ color: 'white', fontSize: '10px' }}>✓</span>
-                </div>
-              </div>
-            )}
+                Changes saved
+              </span>
+              <span style={{ color: '#129729', fontSize: '14px' }}>✓</span>
+            </div>
           </div>
         </div>
 
@@ -554,7 +558,7 @@ const RankingScreen = () => {
                 color: '#121212',
                 fontFamily: 'Martian Mono, JetBrains Mono, monospace',
                 fontSize: '14px',
-                fontWeight: '400',
+                fontWeight: '900',
                 letterSpacing: '0.28px',
                 padding: '16px',
                 minWidth: 'unset',
@@ -576,7 +580,7 @@ const RankingScreen = () => {
                 color: theme.text,
                 fontFamily: 'Martian Mono, JetBrains Mono, monospace',
                 fontSize: '14px',
-                fontWeight: '500',
+                fontWeight: '900',
                 padding: '16px',
                 minWidth: 'unset',
                 minHeight: 'unset'

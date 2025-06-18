@@ -100,6 +100,18 @@ const Button = ({
           color: '#FFFFFF'
         };
       
+      case 'checkpoint-back':
+        // Transparent back button for checkpoint screen
+        return {
+          backgroundColor: 'transparent',
+          color: '#4B4B4B'
+        };
+      
+      case 'unstyled':
+      case 'report-download':
+        // Allow caller-provided styles to dictate appearance
+        return {};
+      
       case 'primary':
       default:
         // Default primary styling

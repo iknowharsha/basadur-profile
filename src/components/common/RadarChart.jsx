@@ -95,17 +95,18 @@ const RadarChart = ({ data, theme }) => {
         pointLabels: {
           color: theme.bright,
           font: {
-            size: 13,
-            weight: 450,
+            size: 12,
+            weight: 350,
             family: 'IBM Plex Sans'
           },
-          padding: 20,
+          
+          padding: 5,
         },
       },
     },
     elements: {
       line: {
-        tension: 0.2,
+        tension: 0.1,
       },
     },
   };
@@ -113,7 +114,7 @@ const RadarChart = ({ data, theme }) => {
   return (
     <div style={{
       width: '100%',
-      height: '300px',
+      height: '250px',
       position: 'relative'
     }}>
       <Radar data={chartData} options={options} />

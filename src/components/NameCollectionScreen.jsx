@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useAppContext } from '../App';
 import Button from './common/Button';
 
@@ -69,29 +70,47 @@ const NameCollectionScreen = () => {
         textAlign: 'center'
       }}>
 
-        {/* Context Heading */}
-        <h2 style={{
-          fontSize: 'clamp(20px, 4vw, 28px)', // Responsive font size
-          fontWeight: 400,
-          marginBottom: '24px',
-          color: theme.text,
-          letterSpacing: '-0.5px'
-        }}>
+        {/* Context Heading with subtle animation */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6, 
+            ease: "easeOut",
+            delay: 0.1
+          }}
+          style={{
+            fontSize: 'clamp(20px, 4vw, 28px)', // Responsive font size
+            fontWeight: 400,
+            marginBottom: '24px',
+            color: theme.text,
+            letterSpacing: '-0.5px'
+          }}
+        >
           While we generate your report
-        </h2>
+        </motion.h2>
 
-        {/* Primary Prompt */}
-        <h1 style={{
-          fontSize: 'clamp(32px, 7vw, 56px)', // Responsive font size
-          fontWeight: 600, // Semibold to match your checkpoint emphasis
-          fontStyle: 'italic',
-          marginBottom: '40px',
-          color: theme.text,
-          lineHeight: '1.2',
-          letterSpacing: '-0.5px'
-        }}>
+        {/* Primary Prompt with subtle animation */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6, 
+            ease: "easeOut",
+            delay: 0.3
+          }}
+          style={{
+            fontSize: 'clamp(32px, 7vw, 56px)', // Responsive font size
+            fontWeight: 600, // Semibold to match your checkpoint emphasis
+            fontStyle: 'italic',
+            marginBottom: '40px',
+            color: theme.text,
+            lineHeight: '1.2',
+            letterSpacing: '-0.5px'
+          }}
+        >
           Share your full name
-        </h1>
+        </motion.h1>
 
         {/* Form */}
         <form onSubmit={handleSubmit} style={{
@@ -133,15 +152,25 @@ const NameCollectionScreen = () => {
             }}
           />
 
-          {/* Submit Button */}
-          <Button
-            type="submit"
-            disabled={!isValid || isSubmitting}
-            variant="name-collection"
-            theme="implementer"
+          {/* Submit Button with subtle animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              ease: "easeOut",
+              delay: 0.5
+            }}
           >
-            {isSubmitting ? 'Processing...' : 'Submit'}
-          </Button>
+            <Button
+              type="submit"
+              disabled={!isValid || isSubmitting}
+              variant="name-collection"
+              theme="implementer"
+            >
+              {isSubmitting ? 'Processing...' : 'Submit'}
+            </Button>
+          </motion.div>
         </form>
 
         {/* Optional Helper Text */}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 // import { useAppContext } from '../App';
 import ProgressBar from './common/ProgressBar';
 import Button from './common/Button';
@@ -55,6 +56,19 @@ const CheckpointScreen = () => {
     navigate(config.nextRoute);
   };
 
+  // Navigate back depending on checkpoint type
+  const handleBack = () => {
+    if (type === 'start') {
+      navigate('/');
+    } else if (type === 'midpoint') {
+      navigate('/question/6');
+    } else if (type === 'final') {
+      navigate('/question/12');
+    } else {
+      navigate(-1);
+    }
+  };
+
   // Process heading text to handle italic formatting and line breaks
   const processHeading = (text) => {
     const parts = text.split('*');
@@ -101,16 +115,28 @@ const CheckpointScreen = () => {
         fontFamily: 'IBM Plex Sans, sans-serif'
       }}
     >
-      {/* Progress Bar */}
-      <ProgressBar
-        current={config.progress.current}
-        total={config.progress.total}
-        theme={{
-          background: 'rgba(0, 0, 0, 0.08)',
-          fill: config.theme.progressFill,
-          text: config.theme.text
+      {/* Progress Bar – aligned & sized like RankingScreen */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '16px',
+          transform: 'translateX(-50%)',
+          width: '520px',
+          maxWidth: '90vw'
         }}
-      />
+      >
+        <ProgressBar
+          current={config.progress.current}
+          total={config.progress.total}
+          theme={{
+            background: 'rgba(0, 0, 0, 0.08)',
+            fill: config.theme.progressFill,
+            text: config.theme.text
+          }}
+          showText={true}
+        />
+      </div>
 
       {/* Main Content */}
       <div style={{
@@ -124,28 +150,84 @@ const CheckpointScreen = () => {
         minHeight: '70vh'
       }}>
         
-        {/* Motivational Heading */}
-        <h1 style={{
-          fontSize: 'clamp(32px, 7vw, 56px)',
-          fontWeight: '400', // regular weight for base text
-          fontFamily: 'IBM Plex Sans, sans-serif',
-          lineHeight: '1.3',
-          marginBottom: 'clamp(40px, 8vw, 80px)',
-          maxWidth: '700px',
-          color: config.theme.text,
-          letterSpacing: '-0.5px'
-        }}>
-          {processHeading(config.heading)}
-        </h1>
-
-        {/* CTA Button */}
-        <Button
-          onClick={handleContinue}
-          variant="checkpoint"
-          theme={config.buttonTheme}
+        {/* Motivational Heading with subtle animation */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6, 
+            ease: "easeOut",
+            delay: 0.1
+          }}
+          style={{
+            fontSize: 'clamp(32px, 7vw, 56px)',
+            fontWeight: '400', // regular weight for base text
+            fontFamily: 'IBM Plex Sans, sans-serif',
+            lineHeight: '1.3',
+            marginBottom: 'clamp(40px, 8vw, 80px)',
+            maxWidth: '700px',
+            color: config.theme.text,
+            letterSpacing: '-0.5px'
+          }}
         >
-          {config.ctaText}
-        </Button>
+          {processHeading(config.heading)}
+        </motion.h1>
+
+        {/* Navigation Buttons – aligned like RankingScreen */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            bottom: '40px',
+            transform: 'translateX(-50%)',
+            width: '520px',
+            maxWidth: '90vw'
+          }}
+        >
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <Button
+              onClick={handleBack}
+              variant="checkpoint-back"
+              style={{
+                width: '120px',
+                height: '60px',
+                borderRadius: '28px',
+                fontFamily: 'Martian Mono, JetBrains Mono, monospace',
+                fontSize: '14px',
+                fontWeight: '400',
+                letterSpacing: '0.28px',
+                padding: '16px',
+                minWidth: 'unset',
+                minHeight: 'unset'
+              }}
+            >
+              ← Back
+            </Button>
+
+            <Button
+              onClick={handleContinue}
+              variant="checkpoint"
+              theme={config.buttonTheme}
+              style={{
+                width: '224px',
+                height: '60px',
+                borderRadius: '28px',
+                fontFamily: 'Martian Mono, JetBrains Mono, monospace',
+                fontSize: '14px',
+                fontWeight: '500',
+                padding: '16px',
+                minWidth: 'unset',
+                minHeight: 'unset'
+              }}
+            >
+              {config.ctaText}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
