@@ -6,184 +6,184 @@
 // Column 4: Evaluation -> Optimizer
 
 export const wordSets = [
-  // Set 1 (Row 1 - excluded from scoring)
+  // Set 1
   {
     row: 1,
     words: [
-      { letter: "a", text: "Competitive", definition: "Striving to win or be better than others", column: 4 },
-      { letter: "b", text: "Analytical", definition: "Examining things in detail to understand them", column: 3 },
-      { letter: "c", text: "Emotional", definition: "Showing strong feelings and being moved by emotions", column: 1 },
-      { letter: "d", text: "Creative", definition: "Having the ability to produce original and imaginative ideas", column: 2 }
+      { letter: 'a', text: 'Alert', definition: 'Quick to notice and respond', column: 1 },
+      { letter: 'b', text: 'Poised', definition: 'Calm and ready for action', column: 2 },
+      { letter: 'c', text: 'Ready', definition: 'Prepared to begin immediately', column: 3 },
+      { letter: 'd', text: 'Eager', definition: 'Keen and enthusiastic to act', column: 4 }
     ]
   },
-  // Set 2 (Row 2 - excluded from scoring)
+  // Set 2
   {
     row: 2,
     words: [
-      { letter: "a", text: "Accepting", definition: "Open to receiving ideas without immediately judging them", column: 1 },
-      { letter: "b", text: "Risk-taking", definition: "Willing to try new things despite potential failure", column: 2 },
-      { letter: "c", text: "Evaluative", definition: "Carefully assessing the worth or quality of something", column: 4 },
-      { letter: "d", text: "Aware", definition: "Having knowledge or perception of a situation", column: 3 }
+      { letter: 'a', text: 'Patient', definition: 'Able to wait calmly', column: 1 },
+      { letter: 'b', text: 'Diligent', definition: 'Working carefully and steadily', column: 2 },
+      { letter: 'c', text: 'Forceful', definition: 'Strong and assertive in action', column: 3 },
+      { letter: 'd', text: 'Prepared', definition: 'Fully made ready beforehand', column: 4 }
     ]
   },
-  // Set 3 (Row 3 - included in scoring)
+  // Set 3
   {
     row: 3,
     words: [
-      { letter: "a", text: "Ready", definition: "Prepared and willing to act immediately", column: 2 },
-      { letter: "b", text: "Realistic", definition: "Having a practical understanding of what can be achieved", column: 4 },
-      { letter: "c", text: "Feeling", definition: "Experiencing emotions and being guided by them", column: 1 },
-      { letter: "d", text: "Rational", definition: "Based on logical thinking and reasoning", column: 3 }
+      { letter: 'a', text: 'Doing', definition: 'Actively carrying out tasks', column: 1 },
+      { letter: 'b', text: 'Childlike', definition: 'Open and curious like a child', column: 2 },
+      { letter: 'c', text: 'Observing', definition: 'Watching carefully to learn', column: 3 },
+      { letter: 'd', text: 'Realistic', definition: 'Seeing things as they are', column: 4 }
     ]
   },
-  // Set 4 (Row 4 - included in scoring)
+  // Set 4
   {
     row: 4,
     words: [
-      { letter: "a", text: "Intuitive", definition: "Understanding or knowing something without conscious reasoning", column: 1 },
-      { letter: "b", text: "Productive", definition: "Achieving a significant amount of useful work", column: 4 },
-      { letter: "c", text: "Logical", definition: "Following clear, rational principles of reasoning", column: 3 },
-      { letter: "d", text: "Questioning", definition: "Asking probing questions to understand better", column: 2 }
+      { letter: 'a', text: 'Experiencing', definition: 'Learning through direct involvement', column: 1 },
+      { letter: 'b', text: 'Diversifying', definition: 'Seeking many different ideas', column: 2 },
+      { letter: 'c', text: 'Waiting', definition: 'Pausing and letting time pass', column: 3 },
+      { letter: 'd', text: 'Consolidating', definition: 'Bringing pieces together solidly', column: 4 }
     ]
   },
-  // Set 5 (Row 5 - excluded from scoring)
+  // Set 5
   {
     row: 5,
     words: [
-      { letter: "a", text: "Learning", definition: "Acquiring new knowledge or skills", column: 1 },
-      { letter: "b", text: "Creating", definition: "Bringing something new into existence", column: 2 },
-      { letter: "c", text: "Analyzing", definition: "Breaking down complex information into parts", column: 3 },
-      { letter: "d", text: "Doing", definition: "Taking action and getting things accomplished", column: 4 }
+      { letter: 'a', text: 'Reserved', definition: 'Quiet and restrained', column: 1 },
+      { letter: 'b', text: 'Serious', definition: 'Thoughtful and earnest', column: 2 },
+      { letter: 'c', text: 'Fun-loving', definition: 'Enjoying play and humor', column: 3 },
+      { letter: 'd', text: 'Playful', definition: 'Light-hearted and fun', column: 4 }
     ]
   },
-  // Set 6 (Row 6 - included in scoring)
+  // Set 6
   {
     row: 6,
     words: [
-      { letter: "a", text: "Personal", definition: "Related to individual feelings and experiences", column: 1 },
-      { letter: "b", text: "Factual", definition: "Based on actual information and evidence", column: 3 },
-      { letter: "c", text: "Inventive", definition: "Having the ability to create new solutions", column: 2 },
-      { letter: "d", text: "Practical", definition: "Concerned with actual use rather than theory", column: 4 }
+      { letter: 'a', text: 'Trial & Error', definition: 'Testing options to see what works', column: 1 },
+      { letter: 'b', text: 'Alternatives', definition: 'Considering different possibilities', column: 2 },
+      { letter: 'c', text: 'Pondering', definition: 'Thinking deeply and slowly', column: 3 },
+      { letter: 'd', text: 'Evaluating', definition: 'Judging value or quality', column: 4 }
     ]
   },
-  // Set 7 (Row 7 - included in scoring)
+  // Set 7
   {
     row: 7,
     words: [
-      { letter: "a", text: "Specific", definition: "Clearly defined and precisely detailed", column: 4 },
-      { letter: "b", text: "Involved", definition: "Actively participating and engaged", column: 1 },
-      { letter: "c", text: "Broad", definition: "Wide-ranging and comprehensive in scope", column: 2 },
-      { letter: "d", text: "Systematic", definition: "Done according to a organized plan or method", column: 3 }
+      { letter: 'a', text: 'Action', definition: 'Doing something decisively', column: 1 },
+      { letter: 'b', text: 'Divergence', definition: 'Generating varied, unusual ideas', column: 2 },
+      { letter: 'c', text: 'Abstract', definition: 'Dealing in concepts not details', column: 3 },
+      { letter: 'd', text: 'Convergence', definition: 'Narrowing ideas toward a solution', column: 4 }
     ]
   },
-  // Set 8 (Row 8 - included in scoring)
+  // Set 8
   {
     row: 8,
     words: [
-      { letter: "a", text: "Watching", definition: "Observing carefully to understand", column: 3 },
-      { letter: "b", text: "Relating", definition: "Connecting with others and building relationships", column: 1 },
-      { letter: "c", text: "Acting", definition: "Taking decisive steps to achieve goals", column: 4 },
-      { letter: "d", text: "Thinking", definition: "Using mental processes to consider ideas", column: 2 }
+      { letter: 'a', text: 'Direct', definition: 'Straightforward and clear', column: 1 },
+      { letter: 'b', text: 'Possibilities', definition: 'Imagined futures and options', column: 2 },
+      { letter: 'c', text: 'Conceptual', definition: 'Focused on ideas and concepts', column: 3 },
+      { letter: 'd', text: 'Practicalities', definition: 'Attention to workable details', column: 4 }
     ]
   },
-  // Set 9 (Row 9 - included in scoring)
+  // Set 9
   {
     row: 9,
     words: [
-      { letter: "a", text: "Intense", definition: "Having strong focus and concentration", column: 1 },
-      { letter: "b", text: "Practical", definition: "Focused on real-world application", column: 4 },
-      { letter: "c", text: "Academic", definition: "Scholarly and theoretical in approach", column: 3 },
-      { letter: "d", text: "Adventurous", definition: "Willing to take risks and try new experiences", column: 2 }
+      { letter: 'a', text: 'Involved', definition: 'Actively engaged with others', column: 1 },
+      { letter: 'b', text: 'Changing perspectives', definition: 'Looking from new angles', column: 2 },
+      { letter: 'c', text: 'Theoretical', definition: 'Based on ideas and models', column: 3 },
+      { letter: 'd', text: 'Focusing', definition: 'Concentrating on key points', column: 4 }
     ]
   },
-  // Set 10 (Row 10 - excluded from scoring)
+  // Set 10
   {
     row: 10,
     words: [
-      { letter: "a", text: "Observing", definition: "Watching and noting details carefully", column: 3 },
-      { letter: "b", text: "Feeling", definition: "Being aware of and responding to emotions", column: 1 },
-      { letter: "c", text: "Thinking", definition: "Engaging in mental consideration", column: 2 },
-      { letter: "d", text: "Doing", definition: "Actively working and implementing", column: 4 }
+      { letter: 'a', text: 'Quiet', definition: 'Soft-spoken and silent', column: 1 },
+      { letter: 'b', text: 'Trustworthy', definition: 'Reliable and honest', column: 2 },
+      { letter: 'c', text: 'Responsible', definition: 'Accountable and dependable', column: 3 },
+      { letter: 'd', text: 'Imaginative', definition: 'Creating vivid new ideas', column: 4 }
     ]
   },
-  // Set 11 (Row 11 - included in scoring)
+  // Set 11
   {
     row: 11,
     words: [
-      { letter: "a", text: "Immediate", definition: "Happening right now without delay", column: 1 },
-      { letter: "b", text: "Reflective", definition: "Thoughtful and considering all angles", column: 3 },
-      { letter: "c", text: "Pragmatic", definition: "Dealing with things practically and realistically", column: 4 },
-      { letter: "d", text: "Conceptual", definition: "Dealing with ideas and abstract thinking", column: 2 }
+      { letter: 'a', text: 'Implementing', definition: 'Putting plans into action', column: 1 },
+      { letter: 'b', text: 'Visualizing', definition: 'Seeing ideas in the mind', column: 2 },
+      { letter: 'c', text: 'Describing', definition: 'Explaining clearly in words', column: 3 },
+      { letter: 'd', text: 'Zeroing-in', definition: 'Targeting precisely on goal', column: 4 }
     ]
   },
-  // Set 12 (Row 12 - included in scoring)
+  // Set 12
   {
     row: 12,
     words: [
-      { letter: "a", text: "Experience", definition: "Learning through direct involvement", column: 1 },
-      { letter: "b", text: "Experimentation", definition: "Testing ideas through trial and exploration", column: 2 },
-      { letter: "c", text: "Conceptualization", definition: "Forming ideas and theoretical frameworks", column: 3 },
-      { letter: "d", text: "Application", definition: "Putting knowledge and ideas into practice", column: 4 }
+      { letter: 'a', text: 'Hands-on', definition: 'Working directly with materials', column: 1 },
+      { letter: 'b', text: 'Future-oriented', definition: 'Thinking ahead in time', column: 2 },
+      { letter: 'c', text: 'Reading', definition: 'Taking in written information', column: 3 },
+      { letter: 'd', text: 'Detail-oriented', definition: 'Careful about small facts', column: 4 }
     ]
   },
-  // Set 13 (Row 13 - included in scoring)
+  // Set 13
   {
     row: 13,
     words: [
-      { letter: "a", text: "Committed", definition: "Dedicated and loyal to a course of action", column: 1 },
-      { letter: "b", text: "Seeking", definition: "Looking for new possibilities and opportunities", column: 2 },
-      { letter: "c", text: "Challenging", definition: "Questioning and testing ideas rigorously", column: 4 },
-      { letter: "d", text: "Developing", definition: "Building and improving ideas systematically", column: 3 }
+      { letter: 'a', text: 'Physical', definition: 'Involving bodily movement', column: 1 },
+      { letter: 'b', text: 'Creating Options', definition: 'Generating different choices', column: 2 },
+      { letter: 'c', text: 'Mental', definition: 'Using reasoning and thought', column: 3 },
+      { letter: 'd', text: 'Deciding', definition: 'Choosing among alternatives', column: 4 }
     ]
   },
-  // Set 14 (Row 14 - excluded from scoring)
+  // Set 14
   {
     row: 14,
     words: [
-      { letter: "a", text: "Concrete", definition: "Real, tangible, and specific", column: 1 },
-      { letter: "b", text: "Active", definition: "Energetic and taking initiative", column: 2 },
-      { letter: "c", text: "Reflective", definition: "Thoughtful and contemplative", column: 3 },
-      { letter: "d", text: "Pragmatic", definition: "Practical and results-oriented", column: 4 }
+      { letter: 'a', text: 'Impersonal', definition: 'Detached from personal feelings', column: 1 },
+      { letter: 'b', text: 'Proud', definition: 'Feeling self-respect and honor', column: 2 },
+      { letter: 'c', text: 'Hopeful', definition: 'Expecting good outcomes', column: 3 },
+      { letter: 'd', text: 'Fearful', definition: 'Feeling afraid and worried', column: 4 }
     ]
   },
-  // Set 15 (Row 15 - included in scoring)
+  // Set 15
   {
     row: 15,
     words: [
-      { letter: "a", text: "Involved", definition: "Actively engaged and participating", column: 1 },
-      { letter: "b", text: "Detached", definition: "Objective and maintaining emotional distance", column: 3 },
-      { letter: "c", text: "Decisive", definition: "Making decisions quickly and confidently", column: 4 },
-      { letter: "d", text: "Tentative", definition: "Cautious and open to changing direction", column: 2 }
+      { letter: 'a', text: 'Practicing', definition: 'Repeating to improve skill', column: 1 },
+      { letter: 'b', text: 'Transforming', definition: 'Changing form or nature', column: 2 },
+      { letter: 'c', text: 'Thinking', definition: 'Using reasoning to process', column: 3 },
+      { letter: 'd', text: 'Choosing', definition: 'Selecting among options', column: 4 }
     ]
   },
-  // Set 16 (Row 16 - included in scoring)
+  // Set 16
   {
     row: 16,
     words: [
-      { letter: "a", text: "Personal", definition: "Based on individual perspective and feelings", column: 1 },
-      { letter: "b", text: "Perceptual", definition: "Related to how things are sensed and understood", column: 2 },
-      { letter: "c", text: "Intellectual", definition: "Using reasoning and analytical thinking", column: 3 },
-      { letter: "d", text: "Practical", definition: "Focused on useful and applicable solutions", column: 4 }
+      { letter: 'a', text: 'Handling', definition: 'Managing with your hands', column: 1 },
+      { letter: 'b', text: 'Speculating', definition: 'Guessing about possibilities', column: 2 },
+      { letter: 'c', text: 'Contemplating', definition: 'Thinking quietly and deeply', column: 3 },
+      { letter: 'd', text: 'Judging', definition: 'Forming an opinion', column: 4 }
     ]
   },
-  // Set 17 (Row 17 - excluded from scoring)
+  // Set 17
   {
     row: 17,
     words: [
-      { letter: "a", text: "Feeling", definition: "Being guided by emotions and personal values", column: 1 },
-      { letter: "b", text: "Trying", definition: "Attempting new approaches and methods", column: 2 },
-      { letter: "c", text: "Thinking", definition: "Using logical analysis and reasoning", column: 3 },
-      { letter: "d", text: "Doing", definition: "Taking action and implementing solutions", column: 4 }
+      { letter: 'a', text: 'Sympathetic', definition: 'Understanding others\' feelings', column: 1 },
+      { letter: 'b', text: 'Pragmatic', definition: 'Practical and realistic', column: 2 },
+      { letter: 'c', text: 'Emotional', definition: 'Driven by strong feelings', column: 3 },
+      { letter: 'd', text: 'Procrastinating', definition: 'Delaying needed action', column: 4 }
     ]
   },
-  // Set 18 (Row 18 - included in scoring)
+  // Set 18
   {
     row: 18,
     words: [
-      { letter: "a", text: "Receptive", definition: "Open to new ideas and experiences", column: 1 },
-      { letter: "b", text: "Relevant", definition: "Directly related and applicable to the situation", column: 2 },
-      { letter: "c", text: "Analytical", definition: "Systematic examination and evaluation", column: 3 },
-      { letter: "d", text: "Impartial", definition: "Fair and unbiased in judgment", column: 4 }
+      { letter: 'a', text: 'Contact', definition: 'Making connection with others', column: 1 },
+      { letter: 'b', text: 'Novelizing', definition: 'Turning ideas into stories', column: 2 },
+      { letter: 'c', text: 'Reflection', definition: 'Reviewing thoughts or actions', column: 3 },
+      { letter: 'd', text: 'Making sure', definition: 'Confirming everything is correct', column: 4 }
     ]
   }
 ];
