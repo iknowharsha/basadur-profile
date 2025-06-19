@@ -436,7 +436,7 @@ const RankingScreen = () => {
               letterSpacing: '-0.16px',
               textAlign: 'center'
             }}>
-              Drag & order the words - from most like you to least.
+              Drag & order the words - from most like you to the least.
             </p>
           </div>
         </div>

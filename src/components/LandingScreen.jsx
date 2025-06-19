@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from './common/Button';
@@ -10,398 +10,283 @@ const LandingScreen = () => {
     navigate('/checkpoint/start');
   };
 
-  const mindsetData = {
-    generator: {
+  // Mindset card data (exact copy from Figma desktop)
+  const mindsetCards = [
+    {
       icon: '/assets/SVGS/-a-filled-icon--of-bulb.svg',
-      backgroundColor: '#A0E1E1', // Bright Blue
-      iconColor: '#21231D', // Dark Charcoal
-      title: 'Generator',
-      description: 'thrives on fresh questions and endless \'what-ifs.\''
+      color: '#75ECEC', // cyan
+      title: 'GENERATOR',
+      description: 'sparks wild ideas and asks "what if we tried...?"'
     },
-    conceptualizer: {
+    {
       icon: '/assets/SVGS/-a-filled-icon--of-brain.svg',
-      backgroundColor: '#FFEB69', // Bright Yellow
-      iconColor: '#3A341C', // Dark Gold
-      title: 'Conceptualizer',
+      color: '#F8964D', // orange
+      title: 'CONCEPTUALIZER',
       description: 'turns big messy thoughts into sharp, shareable ideas.'
     },
-    optimizer: {
+    {
       icon: '/assets/SVGS/-a-filled-icon--of-wrench.svg',
-      backgroundColor: '#FFC091', // Bright Orange
-      iconColor: '#260A2F', // Dark Purple
-      title: 'Optimizer',
-      description: 'loves stress-testing concepts until the plan feels bulletproof.'
+      color: '#FFE11B', // yellow
+      title: 'OPTIMIZER',
+      description: 'makes good concepts even better'
     },
-    implementer: {
+    {
       icon: '/assets/SVGS/-a-filled-icon--of-wheelbarrow.svg',
-      backgroundColor: '#FFD7EF', // Bright Pink
-      iconColor: '#320707', // Dark Maroon
-      title: 'Implementer',
-      description: 'rolls up sleeves, organizes people, and makes ideas real.'
+      color: '#FE96D4', // pink'
+      title: 'IMPLEMENTER',
+      description: 'organizes teams and gets things done'
     }
-  };
+  ];
+
+  // Ref for highlight sentence
+  const highlightRef = useRef(null);
+
+  // Reveal highlight on scroll
+  useEffect(() => {
+    const el = highlightRef.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            el.classList.add('highlight-reveal');
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <div className="landing-screen" style={{
+    <div style={{
       minHeight: '100vh',
       backgroundColor: '#FFFFFF',
-      color: '#000000',
       fontFamily: 'IBM Plex Sans, sans-serif',
+      color: '#000000',
       display: 'flex',
       flexDirection: 'column'
     }}>
-      
-      {/* Hero Section */}
+      {/* Highlight animation CSS */}
+      <style>{`
+        .highlight {
+          position: relative;
+          display: inline-block;
+          z-index: 1;
+        }
+        .highlight::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0.05em;
+          height: 1.4em;
+          width: 100%;
+          background:rgb(254, 246, 194);
+          transform: scaleX(0);
+          transform-origin: left center;
+          transition: transform 1s ease-out;
+          z-index: -1;
+        }
+        .highlight-reveal::before {
+          transform: scaleX(1);
+        }
+
+        /* NEW: disable on small screens */
+        @media(max-width:600px){
+          .highlight::before{ display:none; }
+        }
+      `}</style>
+
+      {/* HERO SECTION */}
       <section style={{
-        background: '#ffffff',
-        padding: '60px 20px',
+        padding: '100px 20px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center'
       }}>
-        
-        {/* Professional Logo */}
+        {/* SVG Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          style={{
-            marginBottom: '40px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          style={{ marginBottom: '64px', display: 'flex', justifyContent: 'center' }}
         >
-          <img 
-            src="/assets/Logos/BP - Black.svg" 
-            alt="Basadur Profile" 
-            style={{
-              height: '60px',
-              width: 'auto'
-            }}
+          <img
+            src="/assets/Logos/BP - Black.svg"
+            alt="Basadur Profile Logo"
+            style={{ width: '80px', height: 'auto' }}
           />
         </motion.div>
 
-        {/* Hero Content */}
+        {/* Icons Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '12px',
+            flexWrap: 'wrap',
+            marginBottom: '14px'
+          }}
+        >
+          {mindsetCards.map(c => (
+            <div
+              key={c.title}
+              style={{
+                width: '40px',
+                height: '40px',
+                backgroundColor: c.color,
+                mask: `url(${c.icon}) center / contain no-repeat`,
+                WebkitMask: `url(${c.icon}) center / contain no-repeat`
+              }}
+            />
+          ))}
+        </motion.div>
+
+        {/* Main Heading + Sub copy */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          style={{
-            maxWidth: '720px',
-            marginBottom: '50px',
-          }}
+          transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}
+          style={{ maxWidth: '900px' }}
         >
           <h1 style={{
-            fontSize: 'clamp(36px, 5vw, 56px)',
-            fontWeight: '700',
-            lineHeight: '1.2',
-            marginBottom: '24px',
-            color: '#000000',
-            letterSpacing: '-1.5px',
+            fontFamily: 'IBM Plex Sans, sans-serif',
+            fontWeight: 600,
+            fontSize: 'clamp(40px, 5.5vw, 64px)',
+            letterSpacing: '-2px',
+            lineHeight: 1.1,
+            marginBottom: '20px'
           }}>
-            Discover how you think and create in a brainstorm
+            Identify your creative role to ace in group projects
           </h1>
 
           <p style={{
-            maxWidth: '720px',
-            fontSize: '18px',
-            color: '#5E5E5E',
-            marginBottom: '40px',
-            fontWeight: '400',
-            lineHeight: '1.4'
+            fontSize: 'clamp(17px, 2vw, 24px)',
+            color: '#777777',
+            letterSpacing: '-0.28px',
+            lineHeight: 1.3,
+            marginBottom: '60px'
           }}>
-            Rank 18 sets of 4 words to reveal your creative strengths and unlock your problem-solving potential.
+            Drag and rank 18 word sets to uncover your unique role in any project.
           </p>
-
-          {/* CTA Section */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '16px'
-          }}>
-            <Button 
-              onClick={handleStartRanking}
-              variant="landing"
-              style={{
-                fontSize: 'clamp(18px, 2.5vw, 22px)', // Responsive font size
-                minWidth: 'clamp(300px, 25vw, 400px)', // Responsive minimum width
-                minHeight: 'clamp(60px, 6vw, 80px)' // Responsive height
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-4px) scale(1.05)';
-                e.target.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 123, 255, 0.4)';
-                e.target.style.backgroundColor = '#1a1a1a';
-                e.target.style.letterSpacing = '1px';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0) scale(1)';
-                e.target.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.1)';
-                e.target.style.backgroundColor = '#000000';
-                e.target.style.letterSpacing = '0.5px';
-              }}
-            >
-              Start ranking
-            </Button>
-            
-            <p style={{
-              fontSize: '14px',
-              color: '#B7B7B7',
-              fontWeight: '400'
-            }}>
-              ⏱️ Takes 5-7 minutes
-            </p>
-          </div>
         </motion.div>
 
-        {/* Mindset Icons Grid */}
+        {/* CTA BUTTON */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '30px',
-            maxWidth: '900px',
-            width: '100%'
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35, ease: 'easeOut' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}
         >
-          {Object.entries(mindsetData).map(([key, mindset], index) => (
-            <motion.div
-              key={key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: 0.7 + (index * 0.1),
-                ease: "easeOut" 
-              }}
-              style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              padding: '30px 20px',
-              backgroundColor: '#ffffff',
-              borderRadius: '20px',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
+          <Button
+            onClick={handleStartRanking}
+            variant="landing"
+            style={{
+              width: 'clamp(240px, 60vw, 400px)',
+              minHeight: '64px',
+              fontSize: 'clamp(18px, 2vw, 24px)',
+              fontFamily: `ibm plex sans, sans-serif`,
+              fontWeight: 400
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px)';
-              e.currentTarget.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.12)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
-            }}
-            >
-              {/* Icon Container */}
-              <div style={{
-                width: '80px',
-                height: '80px',
-                backgroundColor: mindset.backgroundColor,
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '20px',
-                padding: '20px'
-              }}>
-                <div 
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    backgroundColor: mindset.iconColor,
-                    mask: `url(${mindset.icon}) no-repeat center`,
-                    maskSize: 'contain',
-                    WebkitMask: `url(${mindset.icon}) no-repeat center`,
-                    WebkitMaskSize: 'contain'
-                  }}
-                />
-              </div>
-              
-              {/* Content */}
-              <h3 style={{
-                fontSize: '16px',
-                fontWeight: '600',
-                color: '#000000',
-                marginBottom: '8px',
-                letterSpacing: '0.2px',
-                fontFamily: 'IBM Plex Sans, sans-serif'
-              }}>
-                {mindset.title}
-              </h3>
-              
-              <p style={{
-                fontSize: '15px',
-                color: '#5E5E5E',
-                textAlign: 'center',
-                lineHeight: '1.4',
-                margin: 0,
-                fontFamily: 'IBM Plex Sans, sans-serif'
-              }}>
-                {mindset.description}
-              </p>
-            </motion.div>
-          ))}
+          >
+            Start ranking
+          </Button>
+          <p style={{ fontSize: '14px', color: '#777777' }}>⏱️ Takes ~5-7 minutes</p>
         </motion.div>
       </section>
 
-      {/* About Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        style={{
-          padding: '80px 20px',
-          backgroundColor: '#ffffff',
-          display: 'flex',
-          justifyContent: 'center'
-        }}
-      >
-        <div style={{
-          maxWidth: '1000px',
-          width: '100%'
-        }}>
-          
-{/* What is Basadur Profile */}
-<div
-  style={{
-    textAlign: 'center',
-    marginBottom: '60px'
-  }}
->
-  <h2
-    style={{
-      fontSize: '28px',
-      fontWeight: '600',
-      color: '#000000',
-      marginBottom: '20px',
-      letterSpacing: '-0.5px'
-    }}
-  >
-    What is the Basadur Profile?
-  </h2>
-  <p
-         style={{
-       fontSize: '18px',
-       lineHeight: '1.6',
-       color: '#5E5E5E',
-       maxWidth: '700px',
-       margin: '0 auto'
-     }}
-  >
-    The{' '}
-    <a
-      href="https://basadur.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ textDecoration: 'none' }}
-    >
-      <span
-        style={{
-          color: '#4077C9',
-          fontWeight: '500',
-          fontFamily: 'IBM Plex Sans, sans-serif',
-          fontSize: '18px',
-          letterSpacing: '0.2px'
-        }}
-      >
-        Basadur profile
-      </span>
-    </a>{' '}
-    is a creative problem-solving assessment that identifies your preferred thinking style. It reveals
-    whether you naturally lean toward generating ideas, developing concepts, optimizing solutions,
-    or implementing plans.
-  </p>
-</div>
-
-
-          {/* Why Should You Care */}
-          <div style={{
-            background: 'linear-gradient(135deg, #f8f9fa 0%,rgb(229, 233, 237) 100%)',
-            borderRadius: '24px',
-            padding: '50px 40px',
+      {/* ABOUT SECTION (Figma ref 234-96) */}
+      <section style={{ padding: '0 20px 120px', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ maxWidth: '632px', width: '100%' }}>
+          {/* What is header */}
+          <h2 style={{
+            fontFamily: 'IBM Plex Sans, sans-serif',
+            fontSize: '18px',
+            fontWeight: 600,
+            letterSpacing: '0px',
             textAlign: 'center',
-            marginBottom: '60px'
-          }}>
-            <h3 style={{
-              fontSize: '28px',
-              fontWeight: '600',
-              color: '#000000',
-              marginBottom: '20px'
-            }}>
-              Why should you care?
-            </h3>
-                          <p style={{
-                fontSize: '20px',
-                fontWeight: '600',
-                color: '#4B4B4B',
-                marginBottom: '16px'
-              }}>
-              Because group projects get easier when everyone knows their lane.
-            </p>
-                          <p style={{
-                fontSize: '18px',
-                lineHeight: '1.6',
-                color: '#5E5E5E',
-                maxWidth: '600px',
-                margin: '0 auto'
-              }}>
-              Understanding your thinking style helps you contribute more effectively to team projects, 
-              communicate your strengths, and appreciate the diverse perspectives your teammates bring.
-            </p>
-          </div>
+            marginBottom: '20px'
+          }}>WHAT IS BASADUR PROFILE?</h2>
 
-          {/* Features */}
+          <p style={{
+            fontSize: '16px',
+            color: '#777777',
+            lineHeight: '24px',
+            textAlign: 'center',
+            marginBottom: '80px'
+          }}>
+            The Basadur Profile shows how your brain actually tackles problems and generates ideas. Created by creativity researcher Dr. Min Basadur, it maps you to one of four thinking styles that show up in every brainstorm and group project.
+          </p>
+
+          {/* Mindset row (wrap) */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '10px'
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '47px',
+            justifyContent: 'center',
+            marginBottom: '80px'
           }}>
+            {mindsetCards.map(card => (
+              <div key={card.title} style={{ width: '264px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                <div style={{
+                  width: '48px',
+                  height: '48px',
+                  backgroundColor: card.color,
+                  mask: `url(${card.icon}) center / contain no-repeat`,
+                  WebkitMask: `url(${card.icon}) center / contain no-repeat`
+                }} />
+                <h3 style={{ fontFamily: 'IBM Plex Sans, sans-serif', fontSize: '16px', fontWeight: 600, margin: 0 }}>{card.title}</h3>
+                <p style={{ fontSize: '16px', color: '#777777', lineHeight: '24px', textAlign: 'center', margin: 0 }}>{card.description}</p>
+              </div>
+            ))}
           </div>
-        </div>
-      </motion.section>
 
-      {/* Footer */}
-      <footer style={{
-        padding: '40px 20px',
-        backgroundColor: '#ffffff',
-        display: 'flex',
-        justifyContent: 'center',
-        borderTop: '1px solid #f0f0f0'
-      }}>
-        <div style={{
-          textAlign: 'center'
-        }}>
-                     <p style={{
-             fontSize: '14px',
-             fontFamily: 'IBM Plex Sans, sans-serif',
-             letterSpacing: '0.5px',
-             margin: 0,
-             color: '#000000',
-             lineHeight: '1.4'
-           }}>
-             VIBE CODED BY<br />
-             <a
-               href="https://www.linkedin.com/in/harshagowda17/"
-               target="_blank"
-               rel="noopener noreferrer"
-               style={{
-                 color: '#4077C9',
-                 textDecoration: 'none',
-                 fontWeight: '500'
-               }}
-             >
-               THIS HUMAN
-             </a>
-           </p>
+          {/* Why care */}
+          <h3 style={{
+            fontFamily: 'IBM Plex Sans, sans-serif',
+            fontSize: '18px',
+            fontWeight: 600,
+            letterSpacing: '-0.96px',
+            textAlign: 'center',
+            textTransform: 'uppercase',
+            marginBottom: '20px'
+          }}>Why should you care?</h3>
+
+          <p style={{ fontSize: '16px', color: '#777777', lineHeight: '24px', textAlign: 'center', marginBottom: '28px' }}>
+            <span ref={highlightRef} className="highlight">Because group projects flow when everyone knows their natural role.</span> Instead of stepping on each other's toes or leaving gaps unfilled, your team can divide and conquer from day one. Generators spark the ideas, Conceptualizers shape the strategy, Optimizers refine the plan, and Implementers build the final product.
+          </p>
+          <p style={{ fontSize: '16px', color: '#777777', lineHeight: '24px', textAlign: 'center' }}>
+            Drag and rank word sets for 5-7 minutes. We'll crunch the numbers and show you a radar chart that reveals your creative sweet spot—and how to use it to crush your next group assignment.
+          </p>
         </div>
+      </section>
+
+      {/* FOOTER – replicated from FinalReportScreen */}
+      <footer style={{
+        marginTop: '20px',
+        padding: '0 20px 60px',
+        textAlign: 'center',
+        color: '#777777',
+        fontSize: '15px',
+        width: '100%'
+      }}>
+        <p style={{ marginBottom: '8px' }}>
+          All credit for the Basadur&nbsp;profile framework goes to&nbsp;
+          <a href="https://basadur.com" target="_blank" rel="noopener noreferrer" style={{ color: '#4077C9', textDecoration: 'none' }}>Basadur.com</a>.
+          This site is an independent side-project with zero official ties.
+        </p>
+        <p style={{ fontSize: '13px' }}>
+          Built by&nbsp;
+          <a href="https://iknowharsha.framer.website/about" target="_blank" rel="noopener noreferrer" style={{ color: '#4077C9', textDecoration: 'none' }}>THIS HUMAN</a>.
+        </p>
       </footer>
     </div>
   );

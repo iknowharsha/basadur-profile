@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../App';
 import { calculateBasadurProfile } from '../utils/calculations';
+import { clearState } from '../utils/storage';
 import { quadrantThemes, quadrantNames } from '../data/wordSets';
 import RadarChart from './common/RadarChart';
 import Button from './common/Button';
@@ -32,6 +33,9 @@ const FinalReportScreen = () => {
   const { state, dispatch, wordSets } = useAppContext();
   const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
+
+  const toggleInfo = () => setShowInfo(prev => !prev);
 
   useEffect(() => {
     // Calculate results when component mounts
@@ -50,11 +54,11 @@ const FinalReportScreen = () => {
       } catch (error) {
         console.error('Error calculating profile:', error);
         // Redirect back to start if calculation fails
-        navigate('/');
+        navigate('/checkpoint/start');
       }
     } else {
       // No rankings found, redirect to start
-      navigate('/');
+      navigate('/checkpoint/start');
     }
   }, [state.userRankings, wordSets, dispatch, navigate]);
 
@@ -299,7 +303,12 @@ const FinalReportScreen = () => {
 
   const handleTakeTestAgain = () => {
     // Clear state and return to landing
+    clearState();
     dispatch({ type: 'RESET_STATE' });
+    navigate('/checkpoint/start');
+  };
+
+  const handleLogoClick = () => {
     navigate('/');
   };
 
@@ -370,21 +379,23 @@ Visit: [Your App URL]`;
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      fontFamily: 'IBM Plex Sans, sans-serif'
+      fontFamily: 'IBM Plex Sans, sans-serif',
+      position: 'relative'
     }}>
 
-      {/* Header */}
-      <h1 style={{
-        fontFamily: 'IBM Plex Sans, sans-serif',
-        fontSize: '20px',
-        letterSpacing: '-0.25px',
-        fontWeight: '500',
-        color: '#212121',
-        textAlign: 'center',
+      {/* Top Logo */}
+      <div onClick={handleLogoClick} style={{
+        cursor: 'pointer',
         marginBottom: '20px'
-      }}>
-        {state.userName ? `${state.userName}'s Basadur profile` : 'Your Basadur Profile'}
-      </h1>
+      }} aria-label="Back to home">
+        <div style={{
+          width: '72px',
+          height: '45px',
+          backgroundColor: theme.dark,
+          WebkitMask: "url('/assets/Logos/BP%20-%20Black.svg') center/contain no-repeat",
+          mask: "url('/assets/Logos/BP%20-%20Black.svg') center/contain no-repeat"
+        }} />
+      </div>
 
       {/* Main Report Card */}
       <div style={{
@@ -395,6 +406,20 @@ Visit: [Your App URL]`;
         width: '100%',
         boxShadow: '0 12px 32px rgba(0,0,0,0.15)'
       }}>
+
+        {/* Card Header (Profile Title) */}
+        <h2 style={{
+          fontFamily: 'JetBrains Mono, monospace',
+          fontSize: '16px',
+          letterSpacing: '-0.5px',
+          fontWeight: '500',
+          color: theme.bright,
+          textAlign: 'center',
+          marginTop: 0,
+          marginBottom: '28px'
+        }}>
+          {state.userName ? `${state.userName}'s Basadur profile` : 'Your Basadur Profile'}
+        </h2>
 
         {/* Radar Chart */}
         <div style={{ marginBottom: '40px' }}>
@@ -449,6 +474,7 @@ Visit: [Your App URL]`;
             flexDirection: 'column',
             gap: '14px',
             flex: '1',
+            marginBottom: '12px',
             minWidth: '100px'
           }}>
             {secondaryResults.map((result, index) => (
@@ -468,6 +494,19 @@ Visit: [Your App URL]`;
             ))}
           </div>
         </div>
+
+        {/* Helper sentence about info button */}
+        <p style={{
+          fontSize: '13px',
+          fontWeight: '200',
+          color: 'rgba(255,255,255,0.7)',
+          textAlign: 'center',
+          marginTop: '0px',
+          marginBottom: '4px',
+          lineHeight: 1.4,
+        }}>
+          Tap  <span style={{fontWeight:600}}>  ⓘ  </span>  to see what each style means.
+        </p>
       </div>
 
       {/* Action Buttons – now outside the report card */}
@@ -532,9 +571,87 @@ Visit: [Your App URL]`;
           This site is an independent side-project with zero official ties.
         </p>
         <p style={{ fontSize: '13px' }}>
-          Built by <a href="https://www.linkedin.com/in/harshagowda17/" target="_blank" rel="noopener noreferrer" style={{ color: '#4077C9', textDecoration: 'none' }}>THIS HUMAN</a>.
+          Built by <a href="https://iknowharsha.framer.website/about" target="_blank" rel="noopener noreferrer" style={{ color: '#4077C9', textDecoration: 'none' }}>THIS HUMAN</a>.
         </p>
       </footer>
+
+      {/* Info button */}
+      <button onClick={toggleInfo} aria-label="About the four styles" style={{
+        position: 'absolute',
+        top: '24px',
+        right: '20px',
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: '4px',
+        color: '#777',
+      }}>
+        <span style={{
+          width: '24px',
+          height: '24px',
+          borderRadius: '50%',
+          border: '2px solid currentColor',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '14px',
+          fontWeight: 600,
+          lineHeight: 1,
+          pointerEvents: 'none' // keep span non-interactive
+        }}>i</span>
+      </button>
+
+      {/* Info Modal */}
+      {showInfo && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(0,0,0,0.4)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+        }} onClick={toggleInfo}>
+          <div onClick={e=>e.stopPropagation()} style={{
+            background: '#FFFFFF',
+            borderRadius: '20px',
+            maxWidth: '500px',
+            width: '90vw',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            padding: '48px',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+          }}>
+            <h2 style={{fontFamily:'JetBrains Mono, monospace',fontSize:'24px',fontWeight:600,marginTop:0,marginBottom:'28px', letterSpacing:'-0.8px',textAlign:'left'}}>The Four Styles</h2>
+            {[
+              {q:'IMPLEMENTER',desc:'Translates plans into action by organizing resources, coordinating tasks, and ensuring timely execution.'},
+              {q:'GENERATOR',desc:'Initiates the creative process by producing a broad range of original ideas and possibilities.'},
+              {q:'CONCEPTUALIZER',desc:'Synthesizes information to develop coherent frameworks and strategic concepts for problem-solving.'},
+              {q:'OPTIMIZER',desc:'Critically evaluates and refines ideas to maximize efficiency, feasibility, and impact prior to implementation.'},
+            ].map(item=> (
+              <div key={item.q} style={{marginBottom:'20px'}}>
+                <h3 style={{fontFamily:'IBM Plex Sans, monospace',fontSize:'15px',fontWeight:500,margin:'0 0 6px 0'}}>{item.q}</h3>
+                <p style={{fontSize:'15px',color:'#555',lineHeight:1.5,margin:0}}>{item.desc}</p>
+              </div>
+            ))}
+            <button onClick={toggleInfo} style={{
+              marginTop:'10px',
+              width:'100%',
+              padding:'20px',
+              borderRadius:'24px',
+              border:'none',
+              background:'#000',
+              color:'#fff',
+              fontSize:'15px',
+              fontFamily:'IBM Plex Sans, sans-serif',
+              cursor:'pointer'
+            }}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
